@@ -1,0 +1,280 @@
+/* Please read the comments throughout this file for instructions on how to customize the variables to create your own theme. */
+
+/* Many of the variables in this file are referenced throughout the component library. So the *names* of these variables can NOT be altered at all. For example, you cannot change the name `--primary-color` because `var(--primary-color)` is referenced throughout the components. But you are allowed to change any of the variable values to match the theme you want. */
+
+/* If you change any of the CSS variable values in this file that use a length measurement (e.g. 10px, 20%, 0.5rem), then make sure to include the units after the value (e.g. px, %, rem). Some of the CSS rules in these components use the `calc()` function and they require a unit along with the length value in order to work properly. For example, this will work: `--border-radius: 5px;`, but this could break some styles: `--border-radius: 0;`. */
+
+/* COLOR PALETTE */
+/* ------------- */
+:root {
+  /* Non-Neutral Colors */
+  /* INSTRUCTIONS: You can change any of these variables, including the names. */
+  /* The following colors were taken from https://www.w3schools.com/w3css/w3css_color_metro.asp. */
+  --light-green: #99b433;
+  --green: #00a300;
+  --dark-green: #1e7145;
+  --magenta: #ff0097;
+  --light-purple: #9f00a7;
+  --purple: #7e3878;
+  --dark-purple: #603cba;
+  --teal: #00aba9;
+  --light-blue: #eff4ff;
+  --blue: #2d89ef;
+  --dark-blue: #2b5797;
+  --yellow: #ffc40d;
+  --orange: #e3a21a;
+  --dark-orange: #da532c;
+  --red: #ee1111;
+  --dark-red: #b91d47;
+
+  /* Neutral Colors */
+  /* INSTRUCTIONS: You can change any of these values, but do not change the variable names. */
+  --white: #ffffff;
+  --black: #000000;
+  /* NOTE: Fanny Pack does not use a transparent variable, like this `--transparent: transparent;`, because that does not make sense. Some people might want their --white or --black variables to be just a little off of pure white or black, so it makes sense to have those variables. But transparent is transparent. There is no such thing as "off transparent". */
+
+  /* These are shades and tints of #50404d (i.e. Purple Taupe). 
+  See https://www.colorhexa.com/50404d. */
+  --neutral-1: #f9f8f9;
+  --neutral-2: #e8e2e7;
+  --neutral-3: #d6ccd4;
+  --neutral-4: #c5b6c2;
+  --neutral-5: #b4a1b0;
+  --neutral-6: #a28b9e;
+  --neutral-7: #91758b;
+  --neutral-8: #7c6377;
+  --neutral-9: #665162;
+  --neutral-10: #50404d;
+  --neutral-11: #3a2f38;
+  --neutral-12: #241d23;
+  --neutral-13: #0f0c0e;
+}
+
+/* MAIN COLORS */
+/* ----------- */
+/* INSTRUCTIONS: All the color values in this "MAIN COLORS" section should be references to values in the "COLOR PALETTE" section above. */
+:root {
+  --primary-color: var(--dark-purple);
+  --text-color-for-primary-bg: var(--white);
+  --secondary-color: var(--neutral-11);
+  --text-color-for-secondary-bg: var(--white);
+  --tertiary-color: var(--white);
+  --text-color-for-tertiary-bg: var(--neutral-11);
+
+  /* Notification Colors */
+  --info-color: var(--dark-blue);
+  --text-color-for-info-bg: var(--white);
+  --success-color: var(--dark-green);
+  --text-color-for-success-bg: var(--white);
+  --warning-color: var(--yellow);
+  --text-color-for-warning-bg: var(--neutral-13);
+  --error-color: var(--dark-red);
+  --text-color-for-error-bg: var(--white);
+}
+
+
+/* IMPORTANT NOTE */
+/* All the color values in the sections below this line should be references to values in the "MAIN COLORS" section above. Also, references to color values throughout the app should also reference the values in the "MAIN COLORS" section as much as possible. References to colors from the "COLOR PALETTE" section should only occur when there is not a "MAIN COLOR" available for what you need. */
+
+
+/* The following section contains variables for things like backgrounds, borders, typography.
+These variables are organized in the same way that Tailwind organizes their utility classes. */
+/* See https://tailwindcss.com/docs/installation */
+
+
+/* INSTRUCTIONS: You can change any of the following values, but do not change the variable names. */
+
+
+/* BACKGROUNDS */
+:root {
+  /* Page background colors. */
+  --bg-color-default: var(--white);
+  --bg-color-default-dark: var(--neutral-12);
+
+  /* Element background colors. */
+  --bg-color-element-default: var(--neutral-2);
+  --bg-color-element-disabled: var(--neutral-4);
+  
+  /* Hover background color. */
+  --bg-color-hover: var(--neutral-2);
+}
+
+
+/* BORDERS */
+:root {
+  --border-width-default: 1px;
+  --border-style-default: solid;
+  --border-color-default: var(--neutral-4);
+  --border-default: var(--border-width-default) var(--border-style-default) var(--border-color-default);
+  --border-primary: var(--border-width-default) var(--border-style-default) var(--primary-color);
+  --border-secondary: var(--border-width-default) var(--border-style-default) var(--secondary-color);
+  --border-tertiary: var(--border-width-default) var(--border-style-default) var(--tertiary-color);
+  --border-color-disabled: var(--neutral-4);
+  --border-radius: 3px;
+}
+
+
+/* BOX SHADOW */
+:root {
+  --box-shadow-default: 0 0 0 2px var(--border-color-default);
+  --box-shadow-primary: 0 0 0 2px var(--primary-color);
+  --box-shadow-secondary: 0 0 0 2px var(--secondary-color);
+  --box-shadow-tertiary: 0 0 0 2px var(--tertiary-color);
+  --box-shadow-depth: 0px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+/* SIZING */
+/* These are used for width and height values. */
+/* The width variables are the same as the media query variables. */
+:root {
+  --width-sm: 640px;
+  --width-md: 768px;
+  --width-lg: 1024px;
+  --width-xl: 1280px;
+  --width-xxl: 1536px;
+}
+
+
+/* SPACE */
+/*
+  These values are used to provide the padding sizes for elements 
+  like buttons, input fields, etc. or margins for elements.
+*/
+:root {
+  --space-xs: 0px;
+  --space-sm: 5px;
+  --space-md: 10px;
+  --space-lg: 15px;  
+  --space-xl: 20px;
+}
+
+
+/* TYPOGRAPHY */
+:root {
+  /* Font Families */
+  --sans-serif: Montserrat, "sans-serif";
+  --serif: "Bitstream Charter", "serif";
+  --cursive: Audiowide, cursive;
+  --monospace: "Source Code Pro", "monospace";
+
+  /* Font Sizes */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+  --font-size-6xl: 60px;
+  --font-size-7xl: 72px;
+  --font-size-8xl: 96px;
+  --font-size-9xl: 128px;
+
+  /* Line Heights */
+  --line-height-xs: 16px;
+  --line-height-sm: 20px;
+  --line-height-base: 24px;
+  --line-height-lg: 28px;
+  --line-height-xl: 28px;
+  --line-height-xxl: 32px;
+  --line-height-3xl: 36px;
+  --line-height-4xl: 40px;
+  --line-height-5xl: 1px;
+  --line-height-6xl: 1px;
+  --line-height-7xl: 1px;
+  --line-height-8xl: 1px;
+  --line-height-9xl: 1px;
+
+  /* Text Color */
+  --text-color-default: var(--neutral-11);
+  --text-color-disabled: var(--neutral-1);
+
+  /* Placeholder Text Color */
+  --placeholder-color-default: var(--neutral-7);
+}
+
+/* ------------------------ */
+/* DEFAULT COMPONENT STYLES */
+/* ------------------------ */
+/* ACCORDIONS */
+:root {
+  --accordion-default-group-padding: var(--space-md);
+  --accordion-default-title-padding: var(--space-md);
+  --accordion-default-font-size: var(--font-size-base);
+  --accordion-default-space-between-accordions: var(--space-sm);
+}
+
+/* BUTTONS */
+:root {
+  --btn-default-bg-color: var(--primary-color);
+  --btn-default-border-color: var(--primary-color);
+  --btn-default-text-color: var(--white);
+  /* NOTE: Button components have a 2px border and other form elements have a 1px border. The following Button padding sizes are 1px smaller than the other padding sizes in this `theme.css` file to compensate for the 2px border that Button components have. */
+  --btn-padding-xs: 0px 3px;
+  --btn-padding-sm: 4px 8px;
+  --btn-padding-md: 9px 18px;
+  --btn-padding-lg: 14px 28px;
+  --btn-padding-xl: 19px 38px;
+  --btn-default-padding: var(--btn-padding-md);
+  --btn-default-font-size: var(--font-size-base);
+}
+
+/* CHECKBOXES */
+:root {
+  --checkbox-default-margin-bottom: var(--space-xl);
+  /* The `--checkbox-default-vertical-alignment` variable will set the checkbox higher or lower in relation to the label text. The font family and font size that you set in your app will affect where the checkboxes are aligned in relation to the label text of the checkboxes, so this variable might come in handy. */
+  --checkbox-default-vertical-alignment: -3px;
+}
+
+/* DATE PICKER */
+:root {
+  --date-picker-input-default-padding-v: var(--space-md);
+  --date-picker-input-default-padding-h: var(--space-md);
+  --date-picker-input-default-font-size: var(--font-size-base);
+  --date-picker-calendar-border-color: var(--secondary-color);
+  --date-picker-calendar-selected-date-bg-color: var(--secondary-color);
+  --date-picker-calendar-selected-date-text-color: var(--white);
+}
+
+/* LABELS */
+:root {
+  --label-default-font-size: "0.85rem";
+  --label-default-margin-bottom: var(--space-sm);
+}
+
+/* INPUTS */
+:root {
+  --input-default-padding: var(--space-md);
+  --input-default-font-size: var(--font-size-base);
+}
+
+/* RADIO BUTTONS */
+:root {
+  --radio-default-margin-bottom: var(--space-xl);
+  /* The `--radio-default-vertical-alignment` variable will set the radio button higher or lower in relation to the label text. The font family and font size that you set in your app will affect where the radio buttons are aligned in relation to the label text of the radio buttons, so this variable might come in handy. */
+  --radio-default-vertical-alignment: -1px;
+}
+
+/* SELECT BOXES */
+:root {
+  --select-default-padding: var(--space-md);
+  --select-default-font-size: var(--font-size-base);
+}
+
+/* TABS */
+:root {
+  --tabs-default-container-padding: var(--space-lg);
+  --tabs-default-tab-padding: var(--space-md);
+  --tabs-default-tab-font-size: var(--font-size-base);
+  --tabs-default-panel-padding: var(--space-xs);
+  --tabs-default-tab-bar-margin-bottom: var(--space-md);
+}
+
+/* TEXTAREA */
+:root {
+  --textarea-default-padding: var(--space-md);
+  --textarea-default-font-size: var(--font-size-base);
+}

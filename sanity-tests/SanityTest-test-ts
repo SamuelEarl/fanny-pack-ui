@@ -1,0 +1,14 @@
+import { render } from "@testing-library/svelte";
+import SanityTest from "./SanityTest.svelte";
+
+describe("Sanity Test Suite", () => {
+  test("TypeScript sanity test", () => {
+    expect(true).toBe(true);
+  });
+
+  test("Svelte sanity test", () => {
+    console.log("Log SanityTest Component:", SanityTest);
+    const renderedSanityTest = render(SanityTest);
+    console.log("Render SanityTest Component:", renderedSanityTest);
+  });
+});

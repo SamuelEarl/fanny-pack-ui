@@ -1,0 +1,3 @@
+/* NOTE: This file imports the `utility-classes.css` file from "/src/lib/styles/utility-classes.css" so if any of the variables in the "/src/lib/styles/utility-classes.css" are changed, then they will be automatically updated in the example app. */
+
+@import "/src/lib/styles/utility-classes.css";

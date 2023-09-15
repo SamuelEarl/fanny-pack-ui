@@ -1,0 +1,78 @@
+/*
+----------------------------
+Media Queries
+----------------------------
+This file contains the Custom Media Queries (https://www.w3.org/TR/mediaqueries-5/#custom-mq) that can be used for your breakpoints.
+
+NOTE: This file is not imported into the main.css file. Rather, it has to be imported into the `/svelte.config.js` file so it can be processed by PostCSS. Once `@custom-media` queries become a well-supported standard, then I could import this into the main.css file.
+
+----------------
+Usage examples:
+----------------
+
+@media (--xs-up) {
+  .selector {
+    padding: 15px;
+  }
+}
+
+@media (--md-up) {
+  .selector {
+    padding: 20px;
+  }
+}
+
+@media (--xl-min) and (--xl-max) {
+  .selector {
+    padding: 25px;
+  }
+}
+
+------------------------------------------------------------------------------------------------
+Media Query Breakpoints - Borrowed from Tailwind CSS (https://tailwindcss.com/docs/breakpoints)
+------------------------------------------------------------------------------------------------
+xsmall: 0px - 639px | Extra small devices (phones, 600px and smaller)
+small  : 640px - 767px | Small devices (portrait tablets and large phones, 601px and larger)
+medium : 768px - 1023px | Medium devices (landscape tablets, 768px and larger)
+large  : 1024px - 1279px | Large devices (laptops/desktops, 993px and larger)
+xlarge: 1280px - 1535px | Extra large devices (large laptops and desktops, 1200px and larger)
+xxlarge: 1536px and larger
+
+-------------------------------------------------------------------
+For reference, here are the viewport sizes of some common devices:
+-------------------------------------------------------------------
+* iPhone 8: 375px wide x 667px high (xsmall range)
+* iPad (in portrait mode): 768px wide x 1024px high (medium range)
+* iPad Pro (in portrait mode): 1024px wide x 1366px high (large range)
+* Macbook Pro 15": 1440px wide x 900px high (xlarge range)
+*/
+
+
+/*
+NOTES:
+(1) The preferred way to use media queries when creating style rules in your Svelte components is to use the @custom-media rules that have `up` in the name (e.g. --xs-up, --sm-up, etc). The `min` and `max` @custom-media rules are available for situations where you might need to create styles for only one viewport size. For example: @media (--xl-min) and (--xl-max) {...}
+(2) To be explicit with your CSS styles, please use the --xs-up @custom-media rule to define all base styles in your component. Then use the larger breakpoints to change styles for larger viewports, when necessary.
+(3) I usually create styles for the xs, md, and xl breakpoints and then use the other breakpoints for special or unique cases.
+*/
+
+@custom-media --xs-up (min-width: 0px);
+@custom-media --xs-min (min-width: 0px);
+@custom-media --xs-max (max-width: 639px);
+
+@custom-media --sm-up (min-width: 640px);
+@custom-media --sm-min (min-width: 640px);
+@custom-media --sm-max (max-width: 767px);
+
+@custom-media --md-up (min-width: 768px);
+@custom-media --md-min (min-width: 768px);
+@custom-media --md-max (max-width: 1023px);
+
+@custom-media --lg-up (min-width: 1024px);
+@custom-media --lg-min (min-width: 1024px);
+@custom-media --lg-max (max-width: 1279px);
+
+@custom-media --xl-up (min-width: 1280px);
+@custom-media --xl-min (min-width: 1280px);
+@custom-media --xl-max (max-width: 1535px);
+
+@custom-media --xxl-up (min-width: 1536px);

@@ -1,0 +1,78 @@
+/* Custom Checkbox Styles (https://www.w3schools.com/howto/howto_css_custom_checkbox.asp) */
+/* The <Checkbox> and <CheckboxGroup> components use the same exact styles, so this file is simply imported into both components. */
+
+/* Customize the label (the container). */
+.fp-checkbox-label-wrapper {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+}
+.fp-checkbox-label-wrapper:last-child {
+  margin-bottom: 10px;
+}
+/* On mouse-over of an unchecked checkbox, add a box-shadow to the checkbox that matches the border color. */
+.fp-checkbox-label-wrapper:hover .fp-checkbox-input ~ .fp-checkbox-checkmark {
+  box-shadow: var(--box-shadow-default);
+}
+
+/* Hide the browser's default checkbox. */
+.fp-checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* When the checkbox is checked, add a background color and change the border color to match the background color. */
+.fp-checkbox-input:checked ~ .fp-checkbox-checkmark {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+/* Show the checkmark when checked. */
+.fp-checkbox-input:checked ~ .fp-checkbox-checkmark:after {
+  display: block;
+}
+/* On mouse-over of a checked checkbox, add a box-shadow to the checkbox that matches the background color. */
+.fp-checkbox-label-wrapper:hover .fp-checkbox-input:checked ~ .fp-checkbox-checkmark {
+  box-shadow: var(--box-shadow-primary);
+}
+
+/* Create a custom checkbox. */
+.fp-checkbox-checkmark {
+  position: absolute;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: var(--border-default);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color-element-default);
+}
+.fp-checkbox-checkmark:after {
+  /* Create the checkmark/indicator (hidden when not checked). */
+  content: "";
+  position: absolute;
+  display: none;
+  /* Style the checkmark/indicator. */
+  left: 7px;
+  top: -1px;
+  width: 10px;
+  height: 20px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* Disabled state */
+.fp-checkbox-input:disabled ~ .fp-checkbox-checkmark {
+  border-color: var(--border-color-disabled);
+  background-color: var(--bg-color-element-disabled);
+  cursor: default;
+}
+.fp-checkbox-label-wrapper .fp-checkbox-input:disabled ~ .fp-checkbox-checkmark {
+  box-shadow: none;
+}
+.fp-checkbox-label-wrapper.disabled {
+  cursor: default;
+}

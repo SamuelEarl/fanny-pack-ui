@@ -1,0 +1,3 @@
+# Bar Chart (horizontal)
+
+---

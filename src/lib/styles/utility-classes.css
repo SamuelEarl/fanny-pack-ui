@@ -1,0 +1,5 @@
+/* The utility classes in this file are organized the same as Tailwind organizes their utility classes. */
+/* See https://tailwindcss.com/docs/installation */
+
+@import "utility-classes/layout.css";
+@import "utility-classes/transitions-animations.css";
