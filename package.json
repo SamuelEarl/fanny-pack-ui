@@ -1,12 +1,12 @@
 {
 	"name": "@fanny-pack-ui/svelte-kit",
-	"version": "0.0.100",
+	"version": "0.0.101",
   "license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
-		"package": "svelte-kit sync && svelte-package && publint && node ./copy-package-json.js",
+		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
