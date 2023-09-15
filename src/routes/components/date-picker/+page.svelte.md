@@ -262,16 +262,16 @@ Note that the value that is returned is a JavaScript Date object.
 ---
 
 ## Custom DatePicker Styles
-The original intention for these custom styles was to set `--custom-date-picker-bg-color="transparent"` so the `<DatePicker>` field would blend into the background. A few extra custom style rules have been provided for even more customizability.
+The original intention for these custom styles was to set `--custom-date-picker-input-bg-color="transparent"` so the `<DatePicker>` field would blend into the background. A few extra custom style rules have been provided for even more customizability.
 
 You can set the following custom variables:
-* `--custom-date-picker-bg-color`
 * `--custom-date-picker-border-color`
-* `--custom-date-picker-text-color`
-* `--custom-date-input-placeholder-text-color`
-* `--custom-date-input-btn-bg-color`
+* `--custom-date-picker-input-bg-color`
+* `--custom-date-picker-input-text-color`
+* `--custom-date-picker-input-placeholder-text-color`
+* `--custom-date-picker-btn-bg-color`
+* `--custom-date-picker-btn-icon-color`
 * `--custom-date-picker-btn-separator-color`
-* `--custom-date-input-btn-icon-color`
 
 <br>
 
@@ -279,44 +279,30 @@ You can set the following custom variables:
   bind:value={isoDate}
   bind:isValid={isoDateIsValid}
   placeholder="Enter a date"
-  --custom-date-picker-bg-color="var(--secondary-color)"
   --custom-date-picker-border-color="var(--secondary-color)"
-  --custom-date-picker-text-color="var(--white)"
-  --custom-date-picker-placeholder-text-color="var(--neutral-4)"
+  --custom-date-picker-input-bg-color="var(--secondary-color)"
+  --custom-date-picker-input-text-color="var(--white)"
+  --custom-date-picker-input-placeholder-text-color="var(--neutral-4)"
   --custom-date-picker-btn-bg-color="var(--secondary-color)"
-  --custom-date-picker-btn-separator-color="var(--white)"
   --custom-date-picker-btn-icon-color="var(--white)"
+  --custom-date-picker-btn-separator-color="var(--white)"
 />
 
 <br>
 <br>
-
-<!-- <div style="margin-bottom:20px">
-  <DateInput
-    bind:value={date}
-    bind:valid={dateIsValid}
-    placeholder="Enter a date"
-    --custom-date-picker-bg-color="var(--secondary-color)"
-    --custom-date-picker-border-color="var(--secondary-color)"
-    --custom-date-picker-text-color="var(--white)"
-    --custom-date-input-placeholder-text-color="var(--neutral-4)"
-    --custom-date-input-btn-bg-color="var(--secondary-color)"
-    --custom-date-input-btn-icon-color="white"
-  />
-</div> -->
 
 ```svelte
 <DatePicker
   bind:value={isoDate}
   bind:isValid={isoDateIsValid}
   placeholder="Enter a date"
-  --custom-date-picker-bg-color="var(--secondary-color)"
   --custom-date-picker-border-color="var(--secondary-color)"
-  --custom-date-picker-text-color="var(--white)"
-  --custom-date-picker-placeholder-text-color="var(--neutral-4)"
+  --custom-date-picker-input-bg-color="var(--secondary-color)"
+  --custom-date-picker-input-text-color="var(--white)"
+  --custom-date-picker-input-placeholder-text-color="var(--neutral-4)"
   --custom-date-picker-btn-bg-color="var(--secondary-color)"
-  --custom-date-picker-btn-separator-color="var(--white)"
   --custom-date-picker-btn-icon-color="var(--white)"
+  --custom-date-picker-btn-separator-color="var(--white)"
 />
 ```
 

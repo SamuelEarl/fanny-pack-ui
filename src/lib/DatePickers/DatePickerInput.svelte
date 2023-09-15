@@ -89,7 +89,6 @@
 
 <div class="datepicker">
   <div class="input-btn-group-wrapper">
-    <!-- <label for="id-textbox-1">Date</label> -->
     <Label {label} forVal={`fp-date-picker-${componentId}`} />
 
     <div class="input-btn-group" class:focused class:disabled>
@@ -138,7 +137,6 @@
   }
 
   .datepicker {
-    margin-top: 1em;
     position: relative;
 
     & .input-btn-group-wrapper {
@@ -165,11 +163,11 @@
           margin: 0;
           border: none;
           outline: none;
-          background-color: var(--custom-date-picker-bg-color, var(--bg-color-element-default));
-          color: var(--custom-date-picker-text-color, inherit);
+          background-color: var(--custom-date-picker-input-bg-color, var(--bg-color-element-default));
+          color: var(--custom-date-picker-input-text-color, inherit);
 
           &::placeholder {
-            color: var(--custom-date-picker-placeholder-text-color, var(--placeholder-color-default));
+            color: var(--custom-date-picker-input-placeholder-text-color, var(--placeholder-color-default));
           }
 
           &:focus {
