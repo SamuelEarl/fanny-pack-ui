@@ -38,8 +38,6 @@ Make sure to save your code by `add`ing, `commit`ing, and `push`ing to GitHub be
 
 
 ## Step 5: Turn your component library into an npm package
-*NOTE: If you did not initialize a TypeScript SvelteKit project, then you will need to install a dependency called `svelte2tsx`, which will convert the Svelte component source into TSX: `npm install --save-dev svelte2tsx`. ([Source](https://blog.logrocket.com/build-your-own-component-library-svelte/))*
-
 Run the following from the root of the project:
 
 **********
