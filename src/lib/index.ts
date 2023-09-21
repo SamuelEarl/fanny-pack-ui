@@ -2,7 +2,7 @@ export { AccordionGroup, Accordion } from "./Accordions";
 export { Button } from "./Buttons";
 export { Axis, AreaChart, Area } from "./Charts";
 export { Checkbox, CheckboxGroup } from "./Checkboxes";
-export { DatePicker } from "./DatePickers";
+export { DatePicker, getISODate } from "./DatePickers";
 export { DropZone } from "./DropZones";
 export { CurrencyInput, Input } from "./Inputs";
 export { Grid, Row, Col, FlexGrid, FlexRow, FlexCol } from "./Grids";

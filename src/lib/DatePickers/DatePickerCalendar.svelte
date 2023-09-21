@@ -2,7 +2,7 @@
   import { onMount, tick, createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
   import Icon from "@iconify/svelte";
-  import { getDateObjFromISO, getISOFromDateObj, isValidDate } from "./utils";
+  import { getDateObjFromISODate, getISODateFromDateObj, isValidDate } from "./utils";
 
   export let value = "";
 
@@ -14,7 +14,7 @@
   // NOTE: An empty date field is a valid input.
   $: {
     if (value === "" || !isValidDate(focusDay)) {
-      focusDay = getISOFromDateObj(new Date());
+      focusDay = getISODateFromDateObj(new Date());
     }
   }
 
@@ -108,7 +108,7 @@
 
   // This function is used to update the dates, the selected date (i.e. the `value`), and the focused date in the calendar.
   function updateCalendar() {
-    const fd = getDateObjFromISO(focusDay);
+    const fd = getDateObjFromISODate(focusDay);
 
     monthYearHeading = `${monthLabels[fd.getMonth()]} ${fd.getFullYear()}`;
 
@@ -140,7 +140,7 @@
         // Else, push the calendar date objects to the nested week array.
         else {
           dates[i].push({ 
-            date: getISOFromDateObj(d),
+            date: getISODateFromDateObj(d),
             day: d.getDate(),
             // If the date is not in the current month, then set `disabled` to true.
             disabled: d.getMonth() !== fd.getMonth(),
@@ -184,7 +184,6 @@
         preventDefaultEvents = true;
         break;
 
-      // TODO: The Tab key is not working.
       case "Tab":
         cancelBtn.focus();
         if (event.shiftKey) {
@@ -269,10 +268,10 @@
     }
     // If the weekIndex is the last row in the calendar and the dayIndex is the last day in the week (i.e. the focused day is the last day of the month and it is also the last day on the last row and last column in the calendar), then set the `value` to be the first day of the next month and update the calendar to the next month.
     else if (weekIndex === dates.length - 1 && dayIndex === 6) {
-      const d = getDateObjFromISO(day.date);
+      const d = getDateObjFromISODate(day.date);
       // Update the date to be the first day of the next month.
       d.setDate(d.getDate() + 1);
-      focusDay = getISOFromDateObj(d);
+      focusDay = getISODateFromDateObj(d);
       updateCalendar();
     }
     // If the dayIndex is the last day in the week, then add 1 to the weekIndex and set the dayIndex to 0.
@@ -293,10 +292,10 @@
     }
     // If the weekIndex is the first row in the calendar and the dayIndex is the first day in the week (i.e. the focused day is the first day of the month and it is also the first day on the first row and first column in the calendar), then set the `value` to be the last day of the previous month and update the calendar to the previous month.
     else if (weekIndex === 0 && dayIndex === 0) {
-      const d = getDateObjFromISO(day.date);
+      const d = getDateObjFromISODate(day.date);
       // Update the date to be the last day of the previous month.
       d.setDate(d.getDate() - 1);
-      focusDay = getISOFromDateObj(d);
+      focusDay = getISODateFromDateObj(d);
       updateCalendar();
     }
     // If the dayIndex is the first day in the week, then subtract 1 from the weekIndex and set the dayIndex to 6.
@@ -325,10 +324,10 @@
     }
     // If the day that will be highlighted is one week in the future and does not appear in the calendar (i.e. the focused day's weekIndex is the last row in the calendar), then add 7 days to the date object, set the `value` to be the updated date that is one week in the future, and update the calendar to the next month.
     else if (weekIndex === dates.length - 1) {
-      const d = getDateObjFromISO(day.date);
+      const d = getDateObjFromISODate(day.date);
       // Update the date to be the first day of the next month.
       d.setDate(d.getDate() + 7);
-      focusDay = getISOFromDateObj(d);
+      focusDay = getISODateFromDateObj(d);
       updateCalendar();
     }
     // Else set the value to the next week's date.
@@ -345,10 +344,10 @@
     }
     // If the day that will be highlighted is one week in the past and does not appear in the calendar (i.e. the focused day's weekIndex is the first row in the calendar), then subtract 7 days from the date object, set the `value` to be the updated date that is one week in the past, and update the calendar to the previous month.
     else if (weekIndex === 0) {
-      const d = getDateObjFromISO(day.date);
+      const d = getDateObjFromISODate(day.date);
       // Update the date to be the first day of the next month.
       d.setDate(d.getDate() - 7);
-      focusDay = getISOFromDateObj(d);
+      focusDay = getISODateFromDateObj(d);
       updateCalendar();
     }
     // Else set the value to the next week's date.
@@ -359,33 +358,33 @@
 
   function moveToPreviousMonth(date: string) {
     // Create a new Date object from the ISO date string.
-    const d = getDateObjFromISO(date);
+    const d = getDateObjFromISODate(date);
     // Update the date to the previous month.
-    focusDay = getISOFromDateObj(new Date(d.getFullYear(), d.getMonth() - 1, d.getDate()));
+    focusDay = getISODateFromDateObj(new Date(d.getFullYear(), d.getMonth() - 1, d.getDate()));
     updateCalendar();
   }
 
   function moveToNextMonth(date: string) {
     // Create a new Date object from the ISO date string.
-    const d = getDateObjFromISO(date);
+    const d = getDateObjFromISODate(date);
     // Update the date to the next month.
-    focusDay = getISOFromDateObj(new Date(d.getFullYear(), d.getMonth() + 1, d.getDate()));
+    focusDay = getISODateFromDateObj(new Date(d.getFullYear(), d.getMonth() + 1, d.getDate()));
     updateCalendar();
   }
 
   function moveToPreviousYear(date: string) {
     // Create a new Date object from the ISO date string.
-    const d = getDateObjFromISO(date);
+    const d = getDateObjFromISODate(date);
     // Update the date to the previous year.
-    focusDay = getISOFromDateObj(new Date(d.getFullYear() - 1, d.getMonth(), d.getDate()));
+    focusDay = getISODateFromDateObj(new Date(d.getFullYear() - 1, d.getMonth(), d.getDate()));
     updateCalendar();
   }
 
   function moveToNextYear(date: string) {
     // Create a new Date object from the ISO date string.
-    const d = getDateObjFromISO(date);
+    const d = getDateObjFromISODate(date);
     // Update the date to the next year.
-    focusDay = getISOFromDateObj(new Date(d.getFullYear() + 1, d.getMonth(), d.getDate()));
+    focusDay = getISODateFromDateObj(new Date(d.getFullYear() + 1, d.getMonth(), d.getDate()));
     updateCalendar();
   }
 </script>

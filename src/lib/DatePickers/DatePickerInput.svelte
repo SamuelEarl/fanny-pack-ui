@@ -10,19 +10,19 @@
   TODOs:
   * I need to clean up the CSS and make sure that it uses accessible principles. See notes about high contrast styles (which is the last bullet point) on this page: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/#accessibilityfeatures.
       * I need to change the styles for the other components to also use accessible principles.
-  * I need to test the accessibility on the input field and the button. This component focuses on the accessibility of the calendar, but it doesn't talk about the input field or button accessbility. So I need to make sure those have been designed with accessibility in mind too.
+  * I need to test the accessibility on the input field and the button. The example from the link above focuses on the accessibility of the calendar, but it doesn't talk about the input field or button accessbility. So I need to make sure those have been designed with accessibility in mind too.
 -->
 
 <script lang="ts">
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
   import Calendar from "./DatePickerCalendar.svelte";
-  import { getDateObjFromISO, isValidDate } from "./utils";
+  import { getDateObjFromISODate, isValidDate } from "./utils";
   import { Label } from "../Labels";
   import { createId } from "../fp-utils";
 
   export let label = "";
-  export let value = "";
+  export let value:string;
   /** Checks whether the ISO date string is valid */
   export let isValid = false;
   export let paddingV = "var(--date-picker-input-default-padding-v)";
@@ -37,7 +37,7 @@
   let focused = false;
   let showDialog = false;
 
-  $: dateObjFromVal = getDateObjFromISO(value);
+  $: dateObjFromVal = getDateObjFromISODate(value);
 
   // This will update the `isValid` prop when the value changes.
   $: {
