@@ -16,7 +16,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
-  import { Modal } from "../Modals";
   import Calendar from "./DatePickerCalendar.svelte";
   import { getDateObjFromISODate, isValidDate } from "./utils";
   import { Label } from "../Labels";
@@ -150,7 +149,7 @@
     }
 
     & input {
-      /* flex: 1; */
+      flex: 1;
       width: 100%;
       margin: 0;
       border: none;
