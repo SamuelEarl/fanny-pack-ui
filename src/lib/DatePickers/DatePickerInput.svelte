@@ -81,8 +81,8 @@
     if (!showDialog) {
       // Get window width: https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
       const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      // Set the dialogWidth to be no wider than 400. For screens that are narrower than 400, set the width of the dialog to the window width - 30 so there is 15px of padding between the left and right sides of the dialog and the left and right sides of the screen.
-      dialogWidth = windowWidth > 400 ? 400 : windowWidth - 30;
+      // For screens that are wider than 400, then set the dialogWidth to be 350. For screens that are narrower than 400, set the width of the dialog to the window width - 30 so there is 15px of padding between the sides of the screen and the sides of the dialog.
+      dialogWidth = windowWidth > 400 ? 350 : windowWidth - 30;
       showDialog = true;
     }
     else {
