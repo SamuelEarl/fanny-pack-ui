@@ -8,6 +8,9 @@
 
 <!-- 
   TODOs:
+  The calendar is now inside a modal, but that modal does not have quite the same functionality as the <Modal/> component. For example, the "Cancel" and "OK" buttons are not in the footer, they are in the content body. There is no close button in the top, right corner. To provide a consistent theme across all the components I think I might want to update my <Modal/> component. Right now the modal content wrapper has predefined widths, but those widths do not fit smaller components like a calendar or a calculator. The modal content wrapper's predefined width is great for larger components that have a bunch of content (i.e. an article). 
+    * Or, if there is a way to still have the calendar or calculator popup inside a modal but popup directly below the field that it is associated with so the user can still see the field, then that would be the best user experience. 
+    * Also, if the field is too close to the bottom of the screen to where the calendar or calculator would be hidden when it pops up, I want the screen to scroll up, if necessary, to show the entire calendar or calculator, like how the calculator widget works right now.
   * I need to clean up the CSS and make sure that it uses accessible principles. See notes about high contrast styles (which is the last bullet point) on this page: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/#accessibilityfeatures.
       * I need to change the styles for the other components to also use accessible principles.
   * I need to test the accessibility on the input field and the button. The example from the link above focuses on the accessibility of the calendar, but it doesn't talk about the input field or button accessbility. So I need to make sure those have been designed with accessibility in mind too.
