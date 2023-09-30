@@ -82,6 +82,7 @@
       // Get window width: https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
       const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
       // For screens that are wider than 400, then set the dialogWidth to be 350. For screens that are narrower than 400, set the width of the dialog to the window width - 30 so there is 15px of padding between the sides of the screen and the sides of the dialog.
+      // This calculation might seem strange (and I might change it later), but for desktop screens, users don't need larger buttons because they are probably using a mouse. Calendars that are at least 350px wide should be wide enough for most users, even on touch screens.
       dialogWidth = windowWidth > 400 ? 350 : windowWidth - 30;
       showDialog = true;
     }
