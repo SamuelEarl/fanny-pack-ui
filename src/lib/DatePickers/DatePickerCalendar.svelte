@@ -3,11 +3,13 @@
   import { fly } from "svelte/transition";
   import Icon from "@iconify/svelte";
   import { getDateObjFromISODate, getISODateFromDateObj, isValidDate } from "./utils";
+  import { createId } from "../fp-utils";
 
   export let value = "";
-  export let top = 0;
-  export let left = 0;
+  export let dialogWidth = 0;
 
+  const componentId = createId();
+  let activeCalendar;
   const dispatch = createEventDispatcher();
   $: dispatch("change", value);
 
@@ -103,8 +105,10 @@
   //   ],
   // ];
 
-  onMount(() => {
+  onMount(async () => {
     updateCalendar();
+    await tick();
+    activeCalendar.focus();
     setFocusDay();
   });
 
@@ -391,14 +395,16 @@
   }
 </script>
 
-<div class="modal">
+<div class="datepicker-dialog-wrapper">
   <div
-    id="id-datepicker-1" 
+    id={`datepicker-dialog-${componentId}`} 
     class="datepicker-dialog"
-    style={`top: ${top}px; left: ${left}px;`}
+    style={`width: ${dialogWidth}px;`}
     role="dialog" 
     aria-modal="true" 
-    aria-label="Choose Date" 
+    aria-label="Choose Date"
+    tabindex="-1" 
+    bind:this={activeCalendar}
     transition:fly
   >
     <div class="header">
@@ -556,153 +562,141 @@
 </div>
 
 <style>
-  /* The Modal (background) */
-  .modal {
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    display: flex; /* This will center the #modal-content-container vertically */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding: 15px;
+  @media (--xs-up) {
+    .datepicker-dialog-wrapper {
+      position: relative;
+      margin-top: 3px;
 
-    & .datepicker-dialog {
-      /* position: relative; */
-      /* margin: auto; */
-      position: absolute;
-      width: 400px;
-      max-width: 100%;
-      border: 3px solid var(--date-picker-calendar-border-color);
-      border-radius: var(--border-radius);
-      padding: 0;
-      background-color: var(--white);
-      z-index: 2;
-      box-shadow: var(--box-shadow-depth);
+      & .datepicker-dialog {
+        position: absolute;
+        border: 3px solid var(--date-picker-calendar-border-color);
+        border-radius: var(--border-radius);
+        padding: 0;
+        background-color: var(--white);
+        z-index: 100;
+        box-shadow: var(--box-shadow-depth);
 
-      & .header {
-        cursor: default;
-        background-color: var(--date-picker-calendar-border-color);
-        padding: 7px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-
-        & .month-year-heading {
-          margin: 0;
-          padding: 0;
-          display: inline-block;
-          font-size: 1em;
-          color: var(--white);
-          text-transform: none;
+        & .header {
+          cursor: default;
+          background-color: var(--date-picker-calendar-border-color);
+          padding: 7px;
           font-weight: bold;
-          border: none;
+          text-transform: uppercase;
+          color: var(--white);
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
 
-          display: inline-block;
-          width: 12em;
-          text-align: center;
-        }
+          & .month-year-heading {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            font-size: 1em;
+            color: var(--white);
+            text-transform: none;
+            font-weight: bold;
+            border: none;
 
-        & .prev-year, & .prev-month, & .next-month, & .next-year {
+            display: inline-block;
+            width: 12em;
+            text-align: center;
+          }
 
-          &:hover {
-            outline: 1px solid var(--white);
-            border-radius: var(--border-radius);
+          & .prev-year, & .prev-month, & .next-month, & .next-year {
+
+            &:hover {
+              outline: 1px solid var(--white);
+              border-radius: var(--border-radius);
+            }
           }
         }
-      }
 
-      & table.calendar {
-        margin: 0;
-        padding: 10px;
-        padding-bottom: 0;
-        border: none;
-        border-collapse: separate;
-
-        & th, & td {
-          padding: 0;
-          text-align: center;
-          background: var(--white);
-          color: var(--text-color-default);
-          border: none;
-        }
-
-        & td {
-          background-color: var(--bg-color-element-default);
-          padding: 3px;
-          border: var(--border-default);
+        & table.calendar {
           margin: 0;
-          line-height: inherit;
-          height: 40px;
-          width: 40px;
-          border-radius: var(--border-radius);
-          font-size: 15px;
-          cursor: pointer;
+          padding: 10px;
+          padding-bottom: 0;
+          border: none;
+          border-collapse: separate;
 
-          &:hover {
+          & th, & td {
+            padding: 0;
+            text-align: center;
+            background: var(--white);
+            color: var(--text-color-default);
+            border: none;
+          }
+
+          & td {
+            background-color: var(--bg-color-element-default);
+            padding: 3px;
+            border: var(--border-default);
+            margin: 0;
+            line-height: inherit;
+            height: 40px;
+            width: 40px;
+            border-radius: var(--border-radius);
+            font-size: 15px;
+            cursor: pointer;
+
+            &:hover {
+              border-color: var(--date-picker-calendar-selected-date-bg-color);
+            }
+
+            &.disabled {
+              border-color: transparent;
+              pointer-events: none;
+            }
+          }
+
+          /* Selected date styles */
+          & td[aria-selected] {
+            border: 2px dotted var(--date-picker-calendar-selected-date-bg-color);
+          }
+
+          /* Focused date styles */
+          & td[tabindex="0"] {
+            outline: none;
+            background-color: var(--date-picker-calendar-selected-date-bg-color);
             border-color: var(--date-picker-calendar-selected-date-bg-color);
-          }
-
-          &.disabled {
-            border-color: transparent;
-            pointer-events: none;
+            color: var(--date-picker-calendar-selected-date-text-color);
           }
         }
 
-        /* Selected date styles */
-        & td[aria-selected] {
-          border: 2px dotted var(--date-picker-calendar-selected-date-bg-color);
-        }
+        & .dialog-ok-cancel-group {
+          text-align: right;
+          margin-top: 1em;
+          margin-bottom: 1em;
+          margin-right: 1em;
 
-        /* Focused date styles */
-        & td[tabindex="0"] {
-          outline: none;
-          background-color: var(--date-picker-calendar-selected-date-bg-color);
-          border-color: var(--date-picker-calendar-selected-date-bg-color);
-          color: var(--date-picker-calendar-selected-date-text-color);
-        }
-      }
+          & .dialog-button {
+            padding: 6px;
+            margin-left: 1em;
+            width: 5em;
+            background-color: var(--bg-color-element-default);
+            font-size: 0.85em;
+            color: var(--text-color-default);
+            outline: none;
+            border: var(--border-default);
+            border-radius: var(--border-radius);
 
-      & .dialog-ok-cancel-group {
-        text-align: right;
-        margin-top: 1em;
-        margin-bottom: 1em;
-        margin-right: 1em;
+            &:focus {
+              padding: 5px;
+              border: 2px solid var(--secondary-color);
+            }
 
-        & .dialog-button {
-          padding: 6px;
-          margin-left: 1em;
-          width: 5em;
-          background-color: var(--bg-color-element-default);
-          font-size: 0.85em;
-          color: var(--text-color-default);
-          outline: none;
-          border: var(--border-default);
-          border-radius: var(--border-radius);
-
-          &:focus {
-            padding: 5px;
-            border: 2px solid var(--secondary-color);
-          }
-
-          &:hover {
-            border-color: var(--secondary-color);
+            &:hover {
+              border-color: var(--secondary-color);
+            }
           }
         }
-      }
 
-      & .dialog-message {
-        padding-top: 0.25em;
-        padding-left: 1em;
-        height: 1.75em;
-        background: var(--date-picker-calendar-border-color);
-        color: var(--white);
+        & .dialog-message {
+          padding-top: 0.25em;
+          padding-left: 1em;
+          height: 1.75em;
+          background: var(--date-picker-calendar-border-color);
+          color: var(--white);
+        }
       }
     }
   }

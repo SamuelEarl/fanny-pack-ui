@@ -78,7 +78,7 @@
       & main {
         flex: 1;
         height: 100vh;
-        padding: 20px;
+        padding: 15px;
         padding-top: 80px;
         overflow-y: auto;
       }
