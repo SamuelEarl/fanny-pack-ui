@@ -5,6 +5,8 @@
   import { getDateObjFromISODate, getISODateFromDateObj, isValidDate } from "./utils";
 
   export let value = "";
+  export let top = 0;
+  export let left = 0;
 
   const dispatch = createEventDispatcher();
   $: dispatch("change", value);
@@ -392,7 +394,8 @@
 <div class="modal">
   <div
     id="id-datepicker-1" 
-    class="datepicker-dialog" 
+    class="datepicker-dialog"
+    style={`top: ${top}px; left: ${left}px;`}
     role="dialog" 
     aria-modal="true" 
     aria-label="Choose Date" 
@@ -568,8 +571,9 @@
     padding: 15px;
 
     & .datepicker-dialog {
-      position: relative;
-      margin: auto;
+      /* position: relative; */
+      /* margin: auto; */
+      position: absolute;
       width: 400px;
       max-width: 100%;
       border: 3px solid var(--date-picker-calendar-border-color);

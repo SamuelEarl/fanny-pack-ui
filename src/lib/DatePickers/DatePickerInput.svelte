@@ -38,6 +38,8 @@
 
   let componentId = createId();
   let focused = false;
+  let dialogTopPos = 0;
+  let dialogLeftPos = 0;
   let showDialog = false;
 
   $: dateObjFromVal = getDateObjFromISODate(value);
@@ -79,6 +81,23 @@
     }
   });
 
+  function calculateDialogPosition() {
+    if (!showDialog) {
+      // Get the inputBtnGroup element.
+      const inputBtnGroup = document.getElementById(`input-btn-group-${componentId}`);
+      // Get the boundingClientRect properties of the inputBtnGroup element.
+      const boundingClientRect = inputBtnGroup?.getBoundingClientRect();
+      // Get the y-position of the bottom of the inputBtnGroup element and add 2 pixels to it.
+      dialogTopPos = boundingClientRect?.bottom + 2;
+      // Get the x-position of the left side of the inputBtnGroup element.
+      dialogLeftPos = boundingClientRect?.left;
+      showDialog = true;
+    }
+    else {
+      showDialog = false;
+    }
+  }
+
   /**
    * Get the input field's font-size, even if that size is set in a stylesheet:
    * https://stackoverflow.com/a/15195345/9453009
@@ -92,6 +111,8 @@
 
 {#if showDialog}
   <Calendar
+    top={dialogTopPos}
+    left={dialogLeftPos}
     {value} 
     on:change={(event) => {
       value = event.detail;
@@ -102,7 +123,7 @@
 
 <Label {label} forVal={`fp-date-picker-${componentId}`} />
 
-<div class="input-btn-group" class:focused class:disabled>
+<div id={`input-btn-group-${componentId}`} class="input-btn-group" class:focused class:disabled>
   <input
     type="text" 
     {placeholder}
@@ -121,8 +142,8 @@
     style={`padding:${paddingV} calc(${paddingV} + 3px);`}
     aria-label={`Change Date, ${dayLabels[dateObjFromVal.getDay()]} ${monthLabels[dateObjFromVal.getMonth()]} ${dateObjFromVal.getDate()}, ${dateObjFromVal.getFullYear()}`}
     {disabled}
-    on:click={() => showDialog = !showDialog}
-    on:keyup={() => showDialog = !showDialog}
+    on:click={calculateDialogPosition}
+    on:keyup={calculateDialogPosition}
   >
     <Icon icon={btnIcon} width={btnIconSize} />
   </button>
