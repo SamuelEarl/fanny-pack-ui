@@ -565,10 +565,11 @@
   @media (--xs-up) {
     .datepicker-dialog-wrapper {
       position: relative;
-      margin-top: 3px;
 
       & .datepicker-dialog {
         position: absolute;
+        /* Give a little space between the input field and the calendar. */
+        top: 3px;
         border: 3px solid var(--date-picker-calendar-border-color);
         border-radius: var(--border-radius);
         padding: 0;
