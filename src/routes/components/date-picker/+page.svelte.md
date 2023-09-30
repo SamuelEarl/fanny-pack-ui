@@ -72,6 +72,7 @@ This is the value that is returned from this component (it is a string data type
 <style>
   .date-wrapper {
     width: 350px;
+    max-width: 100%;
     margin-bottom: 20px;
   }
 
@@ -174,6 +175,7 @@ You can set the following custom variables:
 <style>
   .date-wrapper {
     width: 350px;
+    max-width: 100%;
     margin-bottom: 20px;
 
     & .invalid-error-wrapper {
