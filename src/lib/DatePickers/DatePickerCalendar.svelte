@@ -389,301 +389,317 @@
   }
 </script>
 
-<div
-  id="id-datepicker-1" 
-  class="datepicker-dialog" 
-  role="dialog" 
-  aria-modal="true" 
-  aria-label="Choose Date" 
-  transition:fly
->
-  <div class="header">
-    <button 
-      type="button" 
-      class="prev-year" 
-      aria-label="previous year"
-      on:click={() => moveToPreviousYear(focusDay)}
-      on:keydown={(event) => {
-        if (event.key === "Esc" || event.key === "Escape") {
-          dispatch("hideDialog");
-        }
-      }}
-    >
-      <Icon icon="vaadin:angle-double-left" width="24" />
-    </button>
-
-    <button
-      type="button" 
-      class="prev-month" 
-      aria-label="previous month"
-      on:click={() => moveToPreviousMonth(focusDay)}
-      on:keydown={(event) => {
-        if (event.key === "Esc" || event.key === "Escape") {
-          dispatch("hideDialog");
-        }
-      }}
-    >
-      <Icon icon="vaadin:angle-left" width="24" />
-    </button>
-
-    <span id="id-grid-label" class="month-year-heading" aria-live="polite">{ monthYearHeading }</span>
-
-    <button
-      type="button" 
-      class="next-month" 
-      aria-label="next month"
-      on:click={() => moveToNextMonth(focusDay)}
-      on:keydown={(event) => {
-        if (event.key === "Esc" || event.key === "Escape") {
-          dispatch("hideDialog");
-        }
-      }}
-    >
-      <Icon icon="vaadin:angle-right" width="24" />
-    </button>
-
-    <button
-      type="button" 
-      class="next-year" 
-      aria-label="next year" 
-      bind:this={nextYearBtn}
-      on:click={() => moveToNextYear(focusDay)}
-      on:keydown={(event) => {
-        if (event.key === "Esc" || event.key === "Escape") {
-          dispatch("hideDialog");
-        }
-      }}
-    >
-      <Icon icon="vaadin:angle-double-right" width="24" />
-    </button>
-  </div>
-
-  <div class="table-wrapper">
-    <table class="calendar" role="grid" aria-labelledby="id-grid-label">
-      <thead>
-        <tr>
-          <th scope="col" abbr="Sunday">Su</th>
-          <th scope="col" abbr="Monday">Mo</th>
-          <th scope="col" abbr="Tuesday">Tu</th>
-          <th scope="col" abbr="Wednesday">We</th>
-          <th scope="col" abbr="Thursday">Th</th>
-          <th scope="col" abbr="Friday">Fr</th>
-          <th scope="col" abbr="Saturday">Sa</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {#each dates as week, weekIndex}
-          <tr>
-            {#each week as day, dayIndex}
-              <td
-                tabindex={focusDay === day.date ? 0 : -1}
-                aria-selected={value === day.date ? true : null}
-                data-date={day.date}
-                class:disabled={day.disabled}
-                on:click={() => handleDayClick(day)}
-                on:keydown={(event) => handleDayKeyDown(event, day, weekIndex, dayIndex)}
-                on:focus={() => dialogMessage = "Cursor keys can navigate dates"}
-              >
-                {#if !day.disabled}
-                  {day.day}
-                {/if}
-              </td>
-            {/each}
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  </div>
-
-  <div class="dialog-ok-cancel-group">
-    <button
-      class="dialog-button" 
-      value="cancel" 
-      bind:this={cancelBtn}
-      on:click={() => dispatch("hideDialog")}
-      on:keydown={(event) => {
-        if (event.key === "Shift") {
-          event.preventDefault();
-        }
-        else if (event.key === "Tab")   {
-          okBtn.focus();
-          event.preventDefault();
-          if (event.shiftKey) {
-            setFocusDay();
+<div class="modal">
+  <div
+    id="id-datepicker-1" 
+    class="datepicker-dialog" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-label="Choose Date" 
+    transition:fly
+  >
+    <div class="header">
+      <button 
+        type="button" 
+        class="prev-year" 
+        aria-label="previous year"
+        on:click={() => moveToPreviousYear(focusDay)}
+        on:keydown={(event) => {
+          if (event.key === "Esc" || event.key === "Escape") {
+            dispatch("hideDialog");
           }
-        }
-        else {
-          dispatch("hideDialog");
-        }
-      }}
-    >
-      Cancel
-    </button>
-    <button 
-      class="dialog-button" 
-      value="ok"
-      bind:this={okBtn}
-      on:click={() => {
-        value = focusDay;
-        dispatch("hideDialog");
-      }}
-      on:keydown={(event) => {
-        if (event.key === "Shift") {
-          event.preventDefault();
-        }
-        else if (event.key === "Tab") {
-          if (event.shiftKey) {
-            cancelBtn.focus();
+        }}
+      >
+        <Icon icon="vaadin:angle-double-left" width="24" />
+      </button>
+
+      <button
+        type="button" 
+        class="prev-month" 
+        aria-label="previous month"
+        on:click={() => moveToPreviousMonth(focusDay)}
+        on:keydown={(event) => {
+          if (event.key === "Esc" || event.key === "Escape") {
+            dispatch("hideDialog");
+          }
+        }}
+      >
+        <Icon icon="vaadin:angle-left" width="24" />
+      </button>
+
+      <span id="id-grid-label" class="month-year-heading" aria-live="polite">{ monthYearHeading }</span>
+
+      <button
+        type="button" 
+        class="next-month" 
+        aria-label="next month"
+        on:click={() => moveToNextMonth(focusDay)}
+        on:keydown={(event) => {
+          if (event.key === "Esc" || event.key === "Escape") {
+            dispatch("hideDialog");
+          }
+        }}
+      >
+        <Icon icon="vaadin:angle-right" width="24" />
+      </button>
+
+      <button
+        type="button" 
+        class="next-year" 
+        aria-label="next year" 
+        bind:this={nextYearBtn}
+        on:click={() => moveToNextYear(focusDay)}
+        on:keydown={(event) => {
+          if (event.key === "Esc" || event.key === "Escape") {
+            dispatch("hideDialog");
+          }
+        }}
+      >
+        <Icon icon="vaadin:angle-double-right" width="24" />
+      </button>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="calendar" role="grid" aria-labelledby="id-grid-label">
+        <thead>
+          <tr>
+            <th scope="col" abbr="Sunday">Su</th>
+            <th scope="col" abbr="Monday">Mo</th>
+            <th scope="col" abbr="Tuesday">Tu</th>
+            <th scope="col" abbr="Wednesday">We</th>
+            <th scope="col" abbr="Thursday">Th</th>
+            <th scope="col" abbr="Friday">Fr</th>
+            <th scope="col" abbr="Saturday">Sa</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {#each dates as week, weekIndex}
+            <tr>
+              {#each week as day, dayIndex}
+                <td
+                  tabindex={focusDay === day.date ? 0 : -1}
+                  aria-selected={value === day.date ? true : null}
+                  data-date={day.date}
+                  class:disabled={day.disabled}
+                  on:click={() => handleDayClick(day)}
+                  on:keydown={(event) => handleDayKeyDown(event, day, weekIndex, dayIndex)}
+                  on:focus={() => dialogMessage = "Cursor keys can navigate dates"}
+                >
+                  {#if !day.disabled}
+                    {day.day}
+                  {/if}
+                </td>
+              {/each}
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="dialog-ok-cancel-group">
+      <button
+        class="dialog-button" 
+        value="cancel" 
+        bind:this={cancelBtn}
+        on:click={() => dispatch("hideDialog")}
+        on:keydown={(event) => {
+          if (event.key === "Shift") {
             event.preventDefault();
           }
-        }
-        else {
+          else if (event.key === "Tab")   {
+            okBtn.focus();
+            event.preventDefault();
+            if (event.shiftKey) {
+              setFocusDay();
+            }
+          }
+          else {
+            dispatch("hideDialog");
+          }
+        }}
+      >
+        Cancel
+      </button>
+      <button 
+        class="dialog-button" 
+        value="ok"
+        bind:this={okBtn}
+        on:click={() => {
           value = focusDay;
           dispatch("hideDialog");
-        }
-      }}
-    >
-      OK
-    </button>
+        }}
+        on:keydown={(event) => {
+          if (event.key === "Shift") {
+            event.preventDefault();
+          }
+          else if (event.key === "Tab") {
+            if (event.shiftKey) {
+              cancelBtn.focus();
+              event.preventDefault();
+            }
+          }
+          else {
+            value = focusDay;
+            dispatch("hideDialog");
+          }
+        }}
+      >
+        OK
+      </button>
+    </div>
+    <div class="dialog-message" aria-live="polite">{ dialogMessage }</div>
   </div>
-  <div class="dialog-message" aria-live="polite">{ dialogMessage }</div>
 </div>
 
 <style>
-  .datepicker-dialog {
-    position: absolute;
-    right: 0;
-    width: 320px;
-    clear: both;
-    border: 3px solid var(--date-picker-calendar-border-color);
-    margin-top: 0.15em;
-    border-radius: var(--border-radius);
-    padding: 0;
-    background-color: var(--white);
-    z-index: 2;
-    box-shadow: var(--box-shadow-depth);
+  /* The Modal (background) */
+  .modal {
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    display: flex; /* This will center the #modal-content-container vertically */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding: 15px;
 
-    & .header {
-      cursor: default;
-      background-color: var(--date-picker-calendar-border-color);
-      padding: 7px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+    & .datepicker-dialog {
+      position: relative;
+      margin: auto;
+      width: 400px;
+      max-width: 100%;
+      border: 3px solid var(--date-picker-calendar-border-color);
+      border-radius: var(--border-radius);
+      padding: 0;
+      background-color: var(--white);
+      z-index: 2;
+      box-shadow: var(--box-shadow-depth);
 
-      & .month-year-heading {
-        margin: 0;
-        padding: 0;
-        display: inline-block;
-        font-size: 1em;
-        color: var(--white);
-        text-transform: none;
+      & .header {
+        cursor: default;
+        background-color: var(--date-picker-calendar-border-color);
+        padding: 7px;
         font-weight: bold;
-        border: none;
+        text-transform: uppercase;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
 
-        display: inline-block;
-        width: 12em;
-        text-align: center;
-      }
+        & .month-year-heading {
+          margin: 0;
+          padding: 0;
+          display: inline-block;
+          font-size: 1em;
+          color: var(--white);
+          text-transform: none;
+          font-weight: bold;
+          border: none;
 
-      & .prev-year, & .prev-month, & .next-month, & .next-year {
+          display: inline-block;
+          width: 12em;
+          text-align: center;
+        }
 
-        &:hover {
-          outline: 1px solid var(--white);
-          border-radius: var(--border-radius);
+        & .prev-year, & .prev-month, & .next-month, & .next-year {
+
+          &:hover {
+            outline: 1px solid var(--white);
+            border-radius: var(--border-radius);
+          }
         }
       }
-    }
 
-    & table.calendar {
-      margin: 0;
-      padding: 10px;
-      padding-bottom: 0;
-      border: none;
-      border-collapse: separate;
-
-      & th, & td {
-        padding: 0;
-        text-align: center;
-        background: var(--white);
-        color: var(--text-color-default);
-        border: none;
-      }
-
-      & td {
-        background-color: var(--bg-color-element-default);
-        padding: 3px;
-        border: var(--border-default);
+      & table.calendar {
         margin: 0;
-        line-height: inherit;
-        height: 40px;
-        width: 40px;
-        border-radius: var(--border-radius);
-        font-size: 15px;
-        cursor: pointer;
+        padding: 10px;
+        padding-bottom: 0;
+        border: none;
+        border-collapse: separate;
 
-        &:hover {
+        & th, & td {
+          padding: 0;
+          text-align: center;
+          background: var(--white);
+          color: var(--text-color-default);
+          border: none;
+        }
+
+        & td {
+          background-color: var(--bg-color-element-default);
+          padding: 3px;
+          border: var(--border-default);
+          margin: 0;
+          line-height: inherit;
+          height: 40px;
+          width: 40px;
+          border-radius: var(--border-radius);
+          font-size: 15px;
+          cursor: pointer;
+
+          &:hover {
+            border-color: var(--date-picker-calendar-selected-date-bg-color);
+          }
+
+          &.disabled {
+            border-color: transparent;
+            pointer-events: none;
+          }
+        }
+
+        /* Selected date styles */
+        & td[aria-selected] {
+          border: 2px dotted var(--date-picker-calendar-selected-date-bg-color);
+        }
+
+        /* Focused date styles */
+        & td[tabindex="0"] {
+          outline: none;
+          background-color: var(--date-picker-calendar-selected-date-bg-color);
           border-color: var(--date-picker-calendar-selected-date-bg-color);
-        }
-
-        &.disabled {
-          border-color: transparent;
-          pointer-events: none;
+          color: var(--date-picker-calendar-selected-date-text-color);
         }
       }
 
-      /* Selected date styles */
-      & td[aria-selected] {
-        border: 2px dotted var(--date-picker-calendar-selected-date-bg-color);
-      }
+      & .dialog-ok-cancel-group {
+        text-align: right;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-right: 1em;
 
-      /* Focused date styles */
-      & td[tabindex="0"] {
-        outline: none;
-        background-color: var(--date-picker-calendar-selected-date-bg-color);
-        border-color: var(--date-picker-calendar-selected-date-bg-color);
-        color: var(--date-picker-calendar-selected-date-text-color);
-      }
-    }
+        & .dialog-button {
+          padding: 6px;
+          margin-left: 1em;
+          width: 5em;
+          background-color: var(--bg-color-element-default);
+          font-size: 0.85em;
+          color: var(--text-color-default);
+          outline: none;
+          border: var(--border-default);
+          border-radius: var(--border-radius);
 
-    & .dialog-ok-cancel-group {
-      text-align: right;
-      margin-top: 1em;
-      margin-bottom: 1em;
-      margin-right: 1em;
+          &:focus {
+            padding: 5px;
+            border: 2px solid var(--secondary-color);
+          }
 
-      & .dialog-button {
-        padding: 6px;
-        margin-left: 1em;
-        width: 5em;
-        background-color: var(--bg-color-element-default);
-        font-size: 0.85em;
-        color: var(--text-color-default);
-        outline: none;
-        border: var(--border-default);
-        border-radius: var(--border-radius);
-
-        &:focus {
-          padding: 5px;
-          border: 2px solid var(--secondary-color);
-        }
-
-        &:hover {
-          border-color: var(--secondary-color);
+          &:hover {
+            border-color: var(--secondary-color);
+          }
         }
       }
-    }
 
-    & .dialog-message {
-      padding-top: 0.25em;
-      padding-left: 1em;
-      height: 1.75em;
-      background: var(--date-picker-calendar-border-color);
-      color: var(--white);
+      & .dialog-message {
+        padding-top: 0.25em;
+        padding-left: 1em;
+        height: 1.75em;
+        background: var(--date-picker-calendar-border-color);
+        color: var(--white);
+      }
     }
   }
 </style>
