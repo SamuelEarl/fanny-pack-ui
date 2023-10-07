@@ -1,6 +1,7 @@
 export { AccordionGroup, Accordion } from "./Accordions";
 export { Button } from "./Buttons";
 export { Axis, AreaChart, Area } from "./Charts";
+export { Calculator } from "./Calculators";
 export { Checkbox, CheckboxGroup } from "./Checkboxes";
 export { DatePicker, getISODate } from "./DatePickers";
 export { DropZone } from "./DropZones";

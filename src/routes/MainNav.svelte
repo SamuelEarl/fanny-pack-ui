@@ -49,6 +49,11 @@
           url: "/button",
         },
         {
+          icon: "bx:calculator",
+          label: "Calculator",
+          url: "/calculator",
+        },
+        {
           icon: "carbon:checkbox-checked",
           label: "Checkbox (single)",
           url: "/checkbox/single",
