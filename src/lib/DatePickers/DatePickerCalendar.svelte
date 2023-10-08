@@ -108,6 +108,7 @@
   onMount(async () => {
     updateCalendar();
     await tick();
+    // If part of the calendar is hidden when it appears in the UI, the screen will scroll up to show the entire calendar. Setting the focus on the `activeCalendar` is what makes that possible.
     activeCalendar.focus();
     setFocusDay();
   });

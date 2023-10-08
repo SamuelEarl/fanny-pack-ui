@@ -1,3 +1,8 @@
+<!-- 
+  TODOS:
+    * Make this mobile friendly in a similar way that I did with the calendar in the <DatePicker> component. This might already be working. The calculator is small enough to fit comfortably on a mobile screen. The developer would simply have to place the calculator where they want it in relation to an input field or a button or some other element/component.
+ -->
+
 <!--
   I started with the calculator component from the following codesandbox and 
   then modified it quite a bit to get it to work like a regular calculator:
@@ -8,15 +13,15 @@
 	import { onMount, createEventDispatcher } from "svelte";
 	import { evaluate } from "mathjs";
 
-	export let actionBtnText = "Insert Total";
+	export let actionBtnText = "Insert Result";
 	export let decimalPlaces = 2;
 
 	const dispatch = createEventDispatcher();
 	let activeCalculator;
 	let calculationArr: string[] = [];
-	// When the `calculationTotal` is a number, then the type will also be a number.
-	// But when the `calculationTotal` is a mathematical symbol or an error, then the type will be a string.
-	let calculationTotal: number | string = 0;
+	// When the `calculationResult` is a number, then the type will also be a number.
+	// But when the `calculationResult` is a mathematical symbol or an error, then the type will be a string.
+	let calculationResult: number | string = 0;
 	let disableActionBtn = true;
 
 	let buttons = [
@@ -76,12 +81,12 @@
 	// NOTE: I do not want to hide the calculator when a user clicks outside of it because users might accidentally click outside of the calculator by accident (especially on mobile devices), which would clear their calculations. I don't want their calculations to get cleared before they are able to insert the total into the input field.
 	onMount(() => {
 		// When this component mounts, give it focus so the keypress events will work according to how they are configured for the calculator. For example, if the calculator does not receive focus, then the "Enter" key will toggle the calculator open and closed.
-		// Also, when the activeCalculator receives focus, if there is not enough space for the calculator, then the focus event will cause the the screen to scroll down to show the entire calculator.
+		// Also, when the activeCalculator receives focus, if there is not enough space for the calculator, then the focus event will cause the the screen to scroll up to show the entire calculator.
 		activeCalculator.focus();
 	});
 
-	function actionBtnFunction() {
-		dispatch("calculateTotal", calculationTotal);
+	function dispatchCalculationResult() {
+		dispatch("setCalculationResult", calculationResult);
 	}
 
 	function handleKeypress(event) {
@@ -95,13 +100,13 @@
 		if (!possibleKeys.includes(key)) return;
 
 		if (key === "Enter") {
-			// An initial `Enter` key press acts like the `=` button in the UI: It will calculate the entries in the calculator and it will enable the Action Button, if the Action Button is present in the UI.
+			// An initial `Enter` key press acts like the `=` button in the calculator: It will calculate the entries in the calculator and it will enable the Action Button, if the Action Button is present in the calculator.
 			if (disableActionBtn) {
 				key = "=";
 			}
-			// If the Action Button is present in the UI: If the user presses the `Enter` key again while the Action Button is enabled, then it will be the same as the user clicking the Action Button in the UI.
+			// If the Action Button is present in the calculator: If the user presses the `Enter` key again while the Action Button is enabled, then it will be the same as the user clicking the Action Button in the calculator.
 			else {
-				actionBtnFunction();
+				dispatchCalculationResult();
 				return;
 			}
 		}
@@ -143,14 +148,14 @@
 			// `toFixed()` returns a string, so that string is then converted to a number type using the unary plus.
 			// If the result remained a string, then it would cause an error in the parent transaction's amount field
 			// (that field would be $0.00) because numbers cannot be added to strings and return an accurate result.
-			calculationTotal = +evaluate(calcArr.join("")).toFixed(decimalPlaces);
+			calculationResult = +evaluate(calcArr.join("")).toFixed(decimalPlaces);
 			// After the user clicks the "=" sign and the calculation is run,
 			// the action button should be enabled so the user can click it.
 			disableActionBtn = false;
 		} 
     catch (err) {
 			console.error("handleCalculate:", err);
-			calculationTotal = "Syntax Error";
+			calculationResult = "Syntax Error";
 			// If there is an error, then disable the action button.
 			disableActionBtn = true;
 		}
@@ -244,13 +249,13 @@
 			calculationArr = calculationArr;
 			// If there are no more elements in calculationArr, then reset its value to 0.
 			if (calculationArr.length === 0) {
-				calculationTotal = 0;
+				calculationResult = 0;
 			}
-			// Else set calculationTotal to the last value (not the last element) in calculationArr.
+			// Else set calculationResult to the last value (not the last element) in calculationArr.
 			else {
 				let lastElement = calculationArr[calculationArr.length - 1];
-				// The calculationTotal type will be a string in this case.
-				calculationTotal = lastElement[lastElement.length - 1];
+				// The calculationResult type will be a string in this case.
+				calculationResult = lastElement[lastElement.length - 1];
 			}
 			return;
 		}
@@ -258,7 +263,7 @@
 		if (btnVal === "Clear All") {
 			// Clear all the entries in the calculator.
 			calculationArr.length = 0;
-			calculationTotal = 0;
+			calculationResult = 0;
 			return;
 		}
 
@@ -270,7 +275,7 @@
 			// If the user clicks the ".", then add a "0." at the beginning of the array.
 			if (btnVal === ".") {
 				calculationArr.push("0.");
-				calculationTotal = "0.";
+				calculationResult = "0.";
 				calculationArr = calculationArr;
 				return;
 			}
@@ -284,7 +289,7 @@
 			// Allow users to click the left-paren button as the first entry.
 			if (btnVal === "(") {
 				calculationArr.push(btnVal);
-				calculationTotal = btnVal;
+				calculationResult = btnVal;
 				calculationArr = calculationArr;
 				return;
 			}
@@ -304,13 +309,13 @@
 			if (lastElementInCalcArr.startsWith("-")) {
 				lastElementInCalcArr = lastElementInCalcArr.substring(1);
 				let lastValueInElement = lastElementInCalcArr[lastElementInCalcArr.length - 1];
-				// Reset calculationTotal to the last value (not the last element) in calculationArr.
-				calculationTotal = lastValueInElement;
+				// Reset calculationResult to the last value (not the last element) in calculationArr.
+				calculationResult = lastValueInElement;
 			}
 			// Add the negative sign.
 			else {
 				lastElementInCalcArr = "-" + lastElementInCalcArr;
-				calculationTotal = "-";
+				calculationResult = "-";
 			}
 			calculationArr[calculationArr.length - 1] = lastElementInCalcArr;
 			return;
@@ -326,7 +331,7 @@
 			// Allow users to add multiple left-parens to calculationArr.
 			if (lastElementInCalcArr === "(") {
 				calculationArr.push(btnVal);
-				calculationTotal = btnVal;
+				calculationResult = btnVal;
 			}
 
 			// Allow users to click the left-paren after a mathematical operator button.
@@ -337,7 +342,7 @@
 				lastElementInCalcArr === "-"
 			) {
 				calculationArr.push(btnVal);
-				calculationTotal = btnVal;
+				calculationResult = btnVal;
 			}
 		}
 
@@ -363,7 +368,7 @@
 			// If there are more left parens than right parens, then allow the user to add the ")".
 			if (numberOfLeftParens > numberOfRightParens) {
 				calculationArr.push(btnVal);
-				calculationTotal = btnVal;
+				calculationResult = btnVal;
 				calculationArr = calculationArr;
 				return;
 			} else {
@@ -377,7 +382,7 @@
 			if (lastElementInCalcArr.includes(".")) return;
 			// Push "." to calculationArr.
 			calculationArr.push(btnVal);
-			calculationTotal = btnVal;
+			calculationResult = btnVal;
 		}
 
 		// How to handle mathematical operator button entries.
@@ -394,19 +399,19 @@
 				return;
 			// Otherwise, push the mathematical operator to the calculationArr.
 			calculationArr.push(btnVal);
-			calculationTotal = btnVal;
+			calculationResult = btnVal;
 		}
 
 		// How to handle number entries.
 		if (!isNaN(btnVal)) {
-			// Set the `calculationTotal` to the last button value that was entered.
-			calculationTotal = btnVal;
+			// Set the `calculationResult` to the last button value that was entered.
+			calculationResult = btnVal;
 			// Push the `btnVal` to `calculationArr`.
 			calculationArr.push(btnVal);
 		}
 
 		calculationArr = formatCalculationArr();
-		console.log("calculationArr:", calculationArr);
+		// console.log("calculationArr:", calculationArr);
 	}
 </script>
 
@@ -418,14 +423,14 @@
 			<div class="top">{calculationArr.join(" ")}</div>
 		</div>
 		<div class="bottom-container">
-			<div class="bottom">{calculationTotal}</div>
+			<div class="bottom">{calculationResult}</div>
 		</div>
 	</div>
 	{#if actionBtnText}
 		<button
 			id="action-btn"
 			disabled={disableActionBtn}
-			on:click={() => actionBtnFunction()}
+			on:click={() => dispatchCalculationResult()}
 			title={`Keyboard Input:\nEnter (when button is enabled)`}
 		>
 			{actionBtnText}
@@ -452,7 +457,6 @@
 		padding: 5px;
 		border: var(--border-default);
 		border-radius: var(--border-radius);
-		box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.1);
 		background-color: var(--white);
 		color: var(--text-color-default);
 		cursor: pointer;
