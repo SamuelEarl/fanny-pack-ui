@@ -1,6 +1,6 @@
 <!-- 
   TODOS:
-    * Make this mobile friendly in a similar way that I did with the calendar in the <DatePicker> component. This might already be working. The calculator is small enough to fit comfortably on a mobile screen. The developer would simply have to place the calculator where they want it in relation to an input field or a button or some other element/component.
+    * Make this mobile friendly in a similar way that I did with the calendar in the <DatePicker> component. UPDATE: This might already be working. The calculator is small enough to fit comfortably on a mobile screen. The developer would simply have to place the calculator where they want it in relation to an input field or a button or some other element/component.
  -->
 
 <!--
@@ -447,7 +447,7 @@
 	{/each}
 </div>
 
-<!-- TODO: When I move this component to the Fanny Pack UI repo I need to create `--calc-*` CSS variables that reference the general CSS theme variables. -->
+<!-- TODO: I need to create `--calc-*` CSS variables in the `theme.css` file that allow users to override only the calculator styles and that reference the general CSS theme variables. -->
 <style>
 	.calculator {
 		display: grid;
