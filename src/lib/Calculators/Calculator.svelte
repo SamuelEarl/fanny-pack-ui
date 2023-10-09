@@ -1,6 +1,7 @@
 <!-- 
   TODOS:
     * Make this mobile friendly in a similar way that I did with the calendar in the <DatePicker> component. UPDATE: This might already be working. The calculator is small enough to fit comfortably on a mobile screen. The developer would simply have to place the calculator where they want it in relation to an input field or a button or some other element/component.
+    * This component uses the `<svelte:body on:keydown={handleKeypress} />` component to handle key presses. This prevents a user from using the keyboard for other parts on the screen (e.g. entering data into input fields, using shortcut keys like Ctrl+F). So I want to change this component to use a similar mechanism as the <Calendar> component for handling key presses when the calendar receives focus.
  -->
 
 <!--
@@ -13,7 +14,9 @@
 	import { onMount, createEventDispatcher } from "svelte";
 	import { evaluate } from "mathjs";
 
-	export let actionBtnText = "Insert Result";
+  export let closeBtn = true;
+  export let insertBtn = true;
+	export let insertBtnText = "Insert";
 	export let decimalPlaces = 2;
 
 	const dispatch = createEventDispatcher();
@@ -22,12 +25,13 @@
 	// When the `calculationResult` is a number, then the type will also be a number.
 	// But when the `calculationResult` is a mathematical symbol or an error, then the type will be a string.
 	let calculationResult: number | string = 0;
-	let disableActionBtn = true;
+	let disableInsertValueBtn = true;
+  let dialogMessage = "Number pad can enter calculations";
 
 	let buttons = [
 		{ value: "Clear", id: "clear", keyboardInput: "Keyboard Input:\nBackspace or Delete" },
 		{ value: "Clear All", id: "clear-all", keyboardInput: "Keyboard Input:\na or A" },
-		{ value: "+/-", id: "neg", keyboardInput: "Keyboard Input:\nn or N" },
+		{ value: "+/-", id: "negative", keyboardInput: "Keyboard Input:\nn or N" },
 		{ value: "(", id: "left-paren", keyboardInput: "" },
 		{ value: ")", id: "right-paren", keyboardInput: "" },
 		{ value: "÷", id: "divide", keyboardInput: "Keyboard Input:\n/" },
@@ -100,11 +104,11 @@
 		if (!possibleKeys.includes(key)) return;
 
 		if (key === "Enter") {
-			// An initial `Enter` key press acts like the `=` button in the calculator: It will calculate the entries in the calculator and it will enable the Action Button, if the Action Button is present in the calculator.
-			if (disableActionBtn) {
+			// An initial `Enter` key press acts like the `=` button in the calculator: It will calculate the entries in the calculator and it will enable the Insert button, if the Insert button is present in the calculator.
+			if (disableInsertValueBtn) {
 				key = "=";
 			}
-			// If the Action Button is present in the calculator: If the user presses the `Enter` key again while the Action Button is enabled, then it will be the same as the user clicking the Action Button in the calculator.
+			// If the Insert button is present in the calculator: If the user presses the `Enter` key again while the Insert button is enabled, then it will be the same as the user clicking the Insert button in the calculator.
 			else {
 				dispatchCalculationResult();
 				return;
@@ -150,14 +154,14 @@
 			// (that field would be $0.00) because numbers cannot be added to strings and return an accurate result.
 			calculationResult = +evaluate(calcArr.join("")).toFixed(decimalPlaces);
 			// After the user clicks the "=" sign and the calculation is run,
-			// the action button should be enabled so the user can click it.
-			disableActionBtn = false;
+			// the Insert button should be enabled so the user can click it.
+			disableInsertValueBtn = false;
 		} 
     catch (err) {
 			console.error("handleCalculate:", err);
 			calculationResult = "Syntax Error";
-			// If there is an error, then disable the action button.
-			disableActionBtn = true;
+			// If there is an error, then disable the Insert button.
+			disableInsertValueBtn = true;
 		}
 	}
 
@@ -219,8 +223,8 @@
 		}
 
 		// If the user clicks any button other than the "=",
-		// then reset disableActionBtn to its default value.
-		disableActionBtn = true;
+		// then reset disableInsertValueBtn to its default value.
+		disableInsertValueBtn = true;
 
 		let lastElementInCalcArr = calculationArr[calculationArr.length - 1];
 
@@ -415,10 +419,16 @@
 	}
 </script>
 
-<svelte:body on:keydown={handleKeypress} />
-
-<div class="calculator" tabindex="-1" bind:this={activeCalculator}>
-	<div id="display">
+<div 
+  class="calculator"  
+  role="dialog"
+  aria-modal="true" 
+  aria-label="Calculator"
+  tabindex="-1"
+  bind:this={activeCalculator} 
+  on:keydown={handleKeypress}
+>
+	<div class="display">
 		<div class="top-container">
 			<div class="top">{calculationArr.join(" ")}</div>
 		</div>
@@ -426,36 +436,50 @@
 			<div class="bottom">{calculationResult}</div>
 		</div>
 	</div>
-	{#if actionBtnText}
-		<button
-			id="action-btn"
-			disabled={disableActionBtn}
-			on:click={() => dispatchCalculationResult()}
-			title={`Keyboard Input:\nEnter (when button is enabled)`}
-		>
-			{actionBtnText}
-		</button>
-	{/if}
-	{#each buttons as button}
-		<button
-			id={button.id}
-			on:click={() => handleBtnClick(button.value)}
-			title={button.keyboardInput}
-		>
-			{button.value}
-		</button>
-	{/each}
+  <div class="calculation-btns-container">
+    {#each buttons as button}
+      <button
+        id={button.id}
+        aria-label={button.id}
+        on:click={() => handleBtnClick(button.value)}
+        title={button.keyboardInput}
+      >
+        {button.value}
+      </button>
+    {/each}
+  </div>
+  {#if closeBtn || insertBtn}
+    <div class="close-insert-group">
+      {#if closeBtn}
+        <button
+          id="close"
+          value="close"
+          on:click={() => dispatch("hideCalculator")}
+        >
+          Close
+        </button>
+      {/if}
+      {#if insertBtn}
+        <button
+          id="insert"
+          aria-label={insertBtnText}
+          disabled={disableInsertValueBtn}
+          on:click={() => dispatchCalculationResult()}
+          title={`Keyboard Input:\nEnter (when button is enabled)`}
+        >
+          {insertBtnText}
+        </button>
+      {/if}
+    </div>
+  {/if}
+  <div class="dialog-message" aria-live="polite">{ dialogMessage }</div>
 </div>
 
 <!-- TODO: I need to create `--calc-*` CSS variables in the `theme.css` file that allow users to override only the calculator styles and that reference the general CSS theme variables. -->
 <style>
 	.calculator {
-		display: grid;
-		grid-template-columns: 24% 24% 24% 24%;
-		grid-gap: 3px;
-		width: 200px;
-		padding: 5px;
-		border: var(--border-default);
+		width: 250px;
+		border: 3px solid var(--secondary-color);
 		border-radius: var(--border-radius);
 		background-color: var(--white);
 		color: var(--text-color-default);
@@ -464,154 +488,182 @@
 		outline: none;
 
     &:hover {
-      outline: 2px solid var(--border-color-default);
+      outline: 2px solid var(--secondary-color);
     }
-	}
 
-	#display {
-		grid-column: 1 / span 4;
-		height: 60px;
-		border: var(--border-default);
-		border-radius: var(--border-radius);
-		background-color: var(--neutral-2);
-		cursor: initial;
-		padding: 0 5px;
+    & .display {
+      grid-column: 1 / span 4;
+      height: 60px;
+      padding: 0 5px;
+      margin: 7px;
+      border: var(--border-default);
+      border-radius: var(--border-radius);
+      background-color: var(--neutral-2);
+      cursor: initial;
 
-		& > div {
-			text-align: right;
-			box-sizing: border-box;
-			height: 50%;
-			width: 100%;
-			margin-left: auto;
-			margin-right: auto;
-			text-align: right;
-			overflow: hidden;
-			white-space: nowrap;
-		}
+      & > div {
+        text-align: right;
+        box-sizing: border-box;
+        height: 50%;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: right;
+        overflow: hidden;
+        white-space: nowrap;
+      }
 
-		& .top {
-			float: right;
-			font-size: 0.9em;
-			line-height: 200%;
-		}
+      & .top {
+        float: right;
+        font-size: 0.9em;
+        line-height: 200%;
+      }
 
-		& .bottom-container {
-			padding-top: 5px;
+      & .bottom-container {
+        padding-top: 5px;
 
-			& .bottom {
-				font-size: 1.2em;
-				line-height: 100%;
-			}
-		}
-	}
+        & .bottom {
+          font-size: 1.2em;
+          line-height: 100%;
+        }
+      }
+    }
 
-	button {
-		height: 34px;
-		outline: none;
-		border: var(--border-default);
-		border-radius: var(--border-radius);
-		background-color: var(--neutral-2);
-		font-weight: 700;
-		font-size: 1em;
-		cursor: pointer;
+    & button {
+      height: 34px;
+      padding: 5px;
+      outline: none;
+      border: var(--border-default);
+      border-radius: var(--border-radius);
+      background-color: var(--neutral-2);
+      font-weight: 700;
+      font-size: 1em;
+      cursor: pointer;
 
-		&:disabled {
-			background-color: var(--bg-color-element-disabled);
-			color: var(--text-color-disabled);
-			cursor: default;
-		}
-	}
+      &:disabled {
+        background-color: var(--bg-color-element-disabled);
+        color: var(--text-color-disabled);
+        cursor: default;
+      }
+    }
 
-	#action-btn {
-		grid-row: 2 / 3;
-		grid-column: 1 / 5;
-	}
+    & .calculation-btns-container {
+      display: grid;
+      grid-template-columns: 24% 24% 24% 24%;
+      grid-gap: 3px;
+      margin: 7px;
 
-	#clear {
-		grid-row: 3 / 4;
-		grid-column: 1 / 3;
-	}
-	#clear-all {
-		grid-row: 3 / 4;
-		grid-column: 3 / 5;
-	}
+      & #clear {
+        grid-row: 1 / 2;
+        grid-column: 1 / 3;
+        margin-bottom: 5px;
+      }
+      & #clear-all {
+        grid-row: 1 / 2;
+        grid-column: 3 / 5;
+        margin-bottom: 5px;
+      }
 
-	#neg {
-		grid-row: 4 / 5;
-		grid-column: 1 / 2;
-	}
+      & #negative {
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+      }
+      & #left-paren {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+      }
+      & #right-paren {
+        grid-row: 2 / 3;
+        grid-column: 3 / 4;
+      }
+      & #divide {
+        grid-row: 2 / 3;
+        grid-column: 4 / 5;
+      }
 
-	#left-paren {
-		grid-row: 4 / 5;
-		grid-column: 2 / 3;
-	}
-	#right-paren {
-		grid-row: 4 / 5;
-		grid-column: 3 / 4;
-	}
+      & #seven {
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+      }
+      & #eight {
+        grid-row: 3 / 4;
+        grid-column: 2 / 3;
+      }
+      & #nine {
+        grid-row: 3 / 4;
+        grid-column: 3 / 4;
+      }
+      & #multiply {
+        grid-row: 3 / 4;
+        grid-column: 4 / 5;
+      }
 
-	#divide {
-		grid-row: 4 / 5;
-		grid-column: 4 / 5;
-	}
-	#multiply {
-		grid-row: 5 / 6;
-		grid-column: 4 / 5;
-	}
-	#minus {
-		grid-row: 6 / 7;
-		grid-column: 4 / 5;
-	}
-	#add {
-		grid-row: 7 / 8;
-		grid-column: 4 / 5;
-	}
-	#equal {
-		grid-row: 8 / 9;
-		grid-column: 4 / 5;
-	}
-	#seven {
-		grid-column: 1 / 2;
-		grid-row: 5 / 6;
-	}
-	#eight {
-		grid-column: 2 / 3;
-		grid-row: 5 / 6;
-	}
-	#nine {
-		grid-column: 3 / 4;
-		grid-row: 5 / 6;
-	}
-	#four {
-		grid-column: 1 / 2;
-		grid-row: 6 / 7;
-	}
-	#five {
-		grid-column: 2 / 3;
-		grid-row: 6 / 7;
-	}
-	#six {
-		grid-column: 3 / 4;
-		grid-row: 6 / 7;
-	}
-	#one {
-		grid-column: 1 / 2;
-		grid-row: 7 / 8;
-	}
-	#two {
-		grid-column: 2 / 3;
-		grid-row: 7 / 8;
-	}
-	#three {
-		grid-column: 3 / 4;
-		grid-row: 7 / 8;
-	}
-	#zero {
-		grid-column: 1 / 3;
-		grid-row: 8 / 9;
-	}
-	#decimal {
-		grid-column: 3 / 4;
-		grid-row: 8 / 9;
-	}
+      & #four {
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+      }
+      & #five {
+        grid-row: 4 / 5;
+        grid-column: 2 / 3;
+      }
+      & #six {
+        grid-row: 4 / 5;
+        grid-column: 3 / 4;
+      }
+      & #minus {
+        grid-row: 4 / 5;
+        grid-column: 4 / 5;
+      }
+
+      & #one {
+        grid-row: 5 / 6;
+        grid-column: 1 / 2;
+      }
+      & #two {
+        grid-row: 5 / 6;
+        grid-column: 2 / 3;
+      }
+      & #three {
+        grid-row: 5 / 6;
+        grid-column: 3 / 4;
+      }
+      & #add {
+        grid-row: 5 / 6;
+        grid-column: 4 / 5;
+      }
+
+      & #zero {
+        grid-row: 6 / 7;
+        grid-column: 1 / 3;
+        margin-bottom: 1px;
+      }
+      & #decimal {
+        grid-row: 6 / 7;
+        grid-column: 3 / 4;
+        margin-bottom: 1px;
+      }
+      & #equal {
+        grid-row: 6 / 7;
+        grid-column: 4 / 5;
+        margin-bottom: 1px;
+      }
+    }
+
+    & .close-insert-group {
+      display: flex;
+      gap: 3px;
+      margin: 7px;
+
+      & button {
+        flex: 1;
+      }
+    }
+
+    & .dialog-message {
+      padding: 5px 7px 3px 7px;
+      margin-top: 8px;
+      background-color: var(--secondary-color);
+      color: var(--white);
+    }
+  }
 </style>

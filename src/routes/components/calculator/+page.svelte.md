@@ -20,8 +20,9 @@
 </div>
 {#if showStandAloneCalculator}
   <Calculator
-    actionBtnText="Update Amount"
     {decimalPlaces}
+    closeBtn={false}
+    insertBtnText="Set"
     on:setCalculationResult={event => amount = event.detail} 
   />
 {/if}
@@ -50,15 +51,18 @@
   Amount: {amount}
 </div>
 <Calculator
-  actionBtnText="Update Amount"
-  {decimalPlaces}
-  on:setCalculationResult={event => amount = event.detail} 
-/>
+    {decimalPlaces}
+    closeBtn={false}
+    insertBtnText="Set"
+    on:setCalculationResult={event => amount = event.detail} 
+  />
 ```
 
 **NOTE:**
 
-This `<Calculator>` component uses a `<svelte:body on:keydown={handleKeypress} />` component to capture all keystrokes from a keyboard. That means that keyboard shortcuts such as `Ctrl`+`F` will not work if this `<Calculator>` component is visible in the UI. You can try it yourself. Try searching for something on this page by pressing `Ctrl`+`F`. You will see that it won't work. 
+**TODO: Fix this issue:**
+
+This `<Calculator>` component uses receives focus when it is mounted. That means that as long as this `<Calculator>` component is visible in the UI, a user will be prevented from using the keyboard for other parts of the page (e.g. entering data into input fields, using shortcut keys like `Ctrl`+`F`). You can try it yourself. Try searching for something on this page by pressing `Ctrl`+`F`. You will see that it won't work. 
 
 However, you can hide this `<Calculator>` component and all shortcut keystrokes will work again. Click the "Hide Calculator" button below and try searching for something on this page.
 
@@ -78,7 +82,7 @@ The next example shows one way you can use this calculator on a page while still
 
 You can use the `<Calculator>` component along with an input field and show/hide the calculator with a button.
 
-After a user calculates the total (by pressing the `=` button), the `Insert Result` button is enabled. The user can then press that button to insert the total from the calculator into the input field.
+After a user calculates the total (by pressing the `=` button), the `Insert` button is enabled. The user can then press that button to insert the total from the calculator into the input field.
 
 <div class="calc-group">
   <div class="input-btn-group">
@@ -190,8 +194,8 @@ It might not be obvious which calculator buttons correspond to which keyboard ke
 | `+/-` | `n` or `N` | This will add or remove a negative sign in front of the number that is being entered. |
 | `÷` | `/` | This is self-explanatory. |
 | `×` | `*` | This is self-explanatory. |
-| `=` | `Enter` | An initial `Enter` key press acts like the `=` button being pressed: It will calculate the entries in the calculator. Also, if the Action Button is present in the calculator (e.g. the "Insert Result" button), then it will be enabled.<br><br>When the Action Button is present and enabled (e.g. after the `=` button or the `Enter` key has been pressed), if the user presses the `Enter` key again, then it will be the same as the user clicking the Action Button. |
-| No corresponding calculator button | `Esc` (Escape) | When a user clicks the `Esc` button while the calculator has focus, the `hideCalculator` event will be dispatched. This can be used to hide the calculator. See the example above that uses the `on:hideCalculator` listener for more details. |
+| `=` & `Insert` | `Enter` | An initial `Enter` key press acts like the `=` button being pressed: It will calculate the entries in the calculator. The `Insert` button will also be enabled.<br><br>When the `Insert` button is enabled (e.g. after the `=` button or the `Enter` key has been pressed), if the user presses the `Enter` key again, then it will be the same as the user clicking the `Insert` button. |
+| `Cancel` | `Esc` (Escape) | When a user clicks the `Esc` button while the calculator has focus, the `hideCalculator` event will be dispatched. This can be used to hide the calculator. See the example above that uses the `on:hideCalculator` listener for more details. |
 
 </div>
 
@@ -203,8 +207,10 @@ It might not be obvious which calculator buttons correspond to which keyboard ke
 
 | Prop name | Type | Possible values | Default value | Description |
 | --------- | ---- | --------------- | ------------- | ----------- |
-| `actionBtnText` | `string` | Any string | `"Insert Result"` | The Action Button (e.g. the `Insert Result` or `Update Amount` buttons) is disabled by default. When the user enters at least one number into the calculator and presses either the `=` button or the `Enter` key, then the Action Button will be enabled. When the Action Button is enabled and clicked, it will dispatch the `setCalculationResult` event, which can be used set the value of a variable to equal the result from the calculator. You can pass an empty string to remove the Action Button from the calculator. |
-| `decimalPlaces` | `number` | Any number | `2` | This prop is used to set the maximum number of decimal places in the calculation result. This prop also enables you to prevent precision loss (see https://javascript.info/number#imprecise-calculations). You can set this to any value you want, but if it is too high then you might run the risk of losing precision. So you should test the number of decimal places in your result against a regular calculator to see if more decimal places still preserves the precision you need.
+| `decimalPlaces` | `number` | Any number | `2` | This prop is used to set the maximum number of decimal places in the calculation result. This prop also enables you to prevent precision loss (see https://javascript.info/number#imprecise-calculations). You can set this to any value you want, but if it is too high then you might run the risk of losing precision. So you should test the number of decimal places in your result against a regular calculator to see if more decimal places still preserves the precision you need. |
+| `closeBtn` | `boolean` | `true`, `false` | `true` | You can remove the close button from the calculator. For example, this might be necessary if you are not hiding the calculator behind a toggle button. See the first example above. |
+| `insertBtn` | `boolean` | `true`, `false` | `true` | You can remove the insert button from the calculator. |
+| `insertBtnText` | `string` | Any string | `"Insert"` | The Insert button (e.g. the `Insert` or `Set` buttons in the examples) is disabled by default. When the user enters at least one number into the calculator and presses either the `=` button or the `Enter` key, then the Insert button will be enabled. When the Insert button is enabled and clicked, it will dispatch the `setCalculationResult` event, which can be used set the value of a variable to equal the result from the calculator. You can pass an empty string to remove the Insert button from the calculator. |
 
 </div>
 

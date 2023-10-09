@@ -578,6 +578,10 @@
         z-index: 100;
         box-shadow: var(--box-shadow-depth);
 
+        &:hover {
+          outline: 2px solid var(--secondary-color);
+        }
+
         & .header {
           cursor: default;
           background-color: var(--date-picker-calendar-border-color);
