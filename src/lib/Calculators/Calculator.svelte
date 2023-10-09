@@ -1,7 +1,6 @@
 <!-- 
   TODOS:
     * Make this mobile friendly in a similar way that I did with the calendar in the <DatePicker> component. UPDATE: This might already be working. The calculator is small enough to fit comfortably on a mobile screen. The developer would simply have to place the calculator where they want it in relation to an input field or a button or some other element/component.
-    * This component uses the `<svelte:body on:keydown={handleKeypress} />` component to handle key presses. This prevents a user from using the keyboard for other parts on the screen (e.g. entering data into input fields, using shortcut keys like Ctrl+F). So I want to change this component to use a similar mechanism as the <Calendar> component for handling key presses when the calendar receives focus.
  -->
 
 <!--
@@ -94,6 +93,9 @@
 	}
 
 	function handleKeypress(event) {
+    // This `<Calculator>` component receives focus when it is mounted. That means that if this `<Calculator>` component is visible in the UI, any keystrokes will be intercepted and handled by the `<Calculator>` until the user removes focus from it by clicking outside of the `<Calculator>` or tabbing to another element. This `if` statement in combination with the `tabindex` attributes in this component allow the user to tab away from the `<Calculator>` component when it is visible in the UI.
+    if (event.key === "Tab") return;
+
 		// Prevent keys like the spacebar from doing strange things in the browser.
 		// For example, when a user presses the spacebar it causes the browser to scroll down as if
 		// the user pressed the "Page Down" key.
@@ -419,28 +421,29 @@
 	}
 </script>
 
-<div 
+<div
   class="calculator"  
   role="dialog"
   aria-modal="true" 
   aria-label="Calculator"
-  tabindex="-1"
+  tabindex="0"
   bind:this={activeCalculator} 
   on:keydown={handleKeypress}
 >
-	<div class="display">
-		<div class="top-container">
-			<div class="top">{calculationArr.join(" ")}</div>
-		</div>
-		<div class="bottom-container">
-			<div class="bottom">{calculationResult}</div>
-		</div>
-	</div>
+  <div class="display">
+    <div class="top-container">
+      <div class="top">{calculationArr.join(" ")}</div>
+    </div>
+    <div class="bottom-container">
+      <div class="bottom">{calculationResult}</div>
+    </div>
+  </div>
   <div class="calculation-btns-container">
     {#each buttons as button}
       <button
         id={button.id}
         aria-label={button.id}
+        tabindex="-1"
         on:click={() => handleBtnClick(button.value)}
         title={button.keyboardInput}
       >
@@ -454,6 +457,7 @@
         <button
           id="close"
           value="close"
+          tabindex="-1"
           on:click={() => dispatch("hideCalculator")}
         >
           Close
@@ -463,6 +467,7 @@
         <button
           id="insert"
           aria-label={insertBtnText}
+          tabindex="-1"
           disabled={disableInsertValueBtn}
           on:click={() => dispatchCalculationResult()}
           title={`Keyboard Input:\nEnter (when button is enabled)`}
@@ -472,28 +477,35 @@
       {/if}
     </div>
   {/if}
-  <div class="dialog-message" aria-live="polite">{ dialogMessage }</div>
+  <div class="dialog-message" aria-live="polite">
+    { dialogMessage }
+  </div>
 </div>
+
 
 <!-- TODO: I need to create `--calc-*` CSS variables in the `theme.css` file that allow users to override only the calculator styles and that reference the general CSS theme variables. -->
 <style>
-	.calculator {
-		width: 250px;
-		border: 3px solid var(--secondary-color);
-		border-radius: var(--border-radius);
-		background-color: var(--white);
-		color: var(--text-color-default);
-		cursor: pointer;
-		user-select: none;
-		outline: none;
+  .calculator {
+    width: 250px;
+    border: 3px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    color: var(--text-color-default);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
 
+    &:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 2px;
+    }
     &:hover {
       outline: 2px solid var(--secondary-color);
+      outline-offset: 0;
     }
 
     & .display {
-      grid-column: 1 / span 4;
-      height: 60px;
+      height: 65px;
       padding: 0 5px;
       margin: 7px;
       border: var(--border-default);
@@ -530,8 +542,7 @@
     }
 
     & button {
-      height: 34px;
-      padding: 5px;
+      padding: 4px;
       outline: none;
       border: var(--border-default);
       border-radius: var(--border-radius);

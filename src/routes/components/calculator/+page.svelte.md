@@ -60,21 +60,9 @@
 
 **NOTE:**
 
-**TODO: Fix this issue:**
+This `<Calculator>` component receives focus when it is mounted. That means that if this `<Calculator>` component is visible in the UI, any keystrokes will be intercepted and handled by the `<Calculator>` until the user removes focus from it by clicking outside of the `<Calculator>` or tabbing to another element. 
 
-This `<Calculator>` component uses receives focus when it is mounted. That means that as long as this `<Calculator>` component is visible in the UI, a user will be prevented from using the keyboard for other parts of the page (e.g. entering data into input fields, using shortcut keys like `Ctrl`+`F`). You can try it yourself. Try searching for something on this page by pressing `Ctrl`+`F`. You will see that it won't work. 
-
-However, you can hide this `<Calculator>` component and all shortcut keystrokes will work again. Click the "Hide Calculator" button below and try searching for something on this page.
-
-{#if showStandAloneCalculator}
-  <Button on:click={() => showStandAloneCalculator = false}>Hide Calculator</Button>
-{:else}
-  <Button on:click={() => showStandAloneCalculator = true}>Show Calculator</Button>
-{/if}
-
-<br>
-
-The next example shows one way you can use this calculator on a page while still allowing users to use their keyboard when the calculator is hidden.
+However, you can hide this `<Calculator>` component and all keystrokes will work normally. The next example shows one way to hide the `<Calculator>` on a page until a user needs to use it, which will prevent the issue described above.
 
 ---
 
@@ -83,6 +71,8 @@ The next example shows one way you can use this calculator on a page while still
 You can use the `<Calculator>` component along with an input field and show/hide the calculator with a button.
 
 After a user calculates the total (by pressing the `=` button), the `Insert` button is enabled. The user can then press that button to insert the total from the calculator into the input field.
+
+If part of the calculator is hidden when it appears in the UI, the screen will scroll up to show the entire calculator. Try scrolling the screen to a point where the input field and button are just above the bottom of the viewport. Now click the calculator button to show the calculator and see what happens.
 
 <div class="calc-group">
   <div class="input-btn-group">
@@ -173,10 +163,6 @@ After a user calculates the total (by pressing the `=` button), the `Insert` but
 }
 ```
 
-**NOTE:**
-
-If part of the calculator is hidden when it appears in the UI, the screen will scroll up to show the entire calculator. Try scrolling the screen to a point where the input field and button are just above the bottom of the viewport. Now click the calculator button to show the calculator and see what happens.
-
 ---
 
 ## Keyboard Shortcuts
@@ -195,7 +181,7 @@ It might not be obvious which calculator buttons correspond to which keyboard ke
 | `÷` | `/` | This is self-explanatory. |
 | `×` | `*` | This is self-explanatory. |
 | `=` & `Insert` | `Enter` | An initial `Enter` key press acts like the `=` button being pressed: It will calculate the entries in the calculator. The `Insert` button will also be enabled.<br><br>When the `Insert` button is enabled (e.g. after the `=` button or the `Enter` key has been pressed), if the user presses the `Enter` key again, then it will be the same as the user clicking the `Insert` button. |
-| `Cancel` | `Esc` (Escape) | When a user clicks the `Esc` button while the calculator has focus, the `hideCalculator` event will be dispatched. This can be used to hide the calculator. See the example above that uses the `on:hideCalculator` listener for more details. |
+| `Close` | `Esc` (Escape) | When a user clicks the `Esc` button while the calculator has focus, the `hideCalculator` event will be dispatched. This can be used to hide the calculator. See the example above that uses the `on:hideCalculator` listener for more details. |
 
 </div>
 

@@ -570,7 +570,7 @@
       & .datepicker-dialog {
         position: absolute;
         /* Give a little space between the input field and the calendar. */
-        top: 3px;
+        top: 5px;
         border: 3px solid var(--date-picker-calendar-border-color);
         border-radius: var(--border-radius);
         padding: 0;
@@ -578,8 +578,13 @@
         z-index: 100;
         box-shadow: var(--box-shadow-depth);
 
+        &:focus {
+          outline: 2px solid var(--secondary-color);
+          outline-offset: 2px;
+        }
         &:hover {
           outline: 2px solid var(--secondary-color);
+          outline-offset: 0;
         }
 
         & .header {
