@@ -578,10 +578,10 @@
         z-index: 100;
         box-shadow: var(--box-shadow-depth);
 
-        &:focus {
+        /* &:focus {
           outline: 2px solid var(--secondary-color);
           outline-offset: 2px;
-        }
+        } */
         &:hover {
           outline: 2px solid var(--secondary-color);
           outline-offset: 0;
