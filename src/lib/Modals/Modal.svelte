@@ -64,7 +64,7 @@
   </div>
 {/if}
 
-<div id="modal">
+<div id="fp-modal">
   <div id="modal-content-container" class="fp-animatetop">
     <div id="modal-content" style={`background-color: ${contentBgColor};`}>
       {#if title}
@@ -91,6 +91,12 @@
 
 <style>
   @media (--xs-up) {
+    /* Prevent Page Scrolling When a Modal is Open:
+       https://www.reddit.com/r/css/comments/137kr90/is_there_a_way_to_prevent_scrollthrough_when/ */
+    :global(body:has(#fp-modal)) {
+      overflow: hidden;
+    }
+
     #close-btn-container {
       position: fixed;
       top: 0px;
@@ -101,7 +107,7 @@
     }
 
     /* The Modal (background) */
-    #modal {
+    #fp-modal {
       position: fixed; /* Stay in place */
       z-index: 100; /* Sit on top */
       left: 0;
