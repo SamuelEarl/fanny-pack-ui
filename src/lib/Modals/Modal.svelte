@@ -91,7 +91,7 @@
 
 <style>
   @media (--xs-up) {
-    /* Prevent Page Scrolling When a Modal is Open:
+    /* Prevent page scrolling when a modal is open:
        https://www.reddit.com/r/css/comments/137kr90/is_there_a_way_to_prevent_scrollthrough_when/ */
     :global(body:has(#fp-modal)) {
       overflow: hidden;
@@ -166,7 +166,7 @@
 
   /* @media lg */
   @media (--lg-up) {
-    #modal {
+    #fp-modal {
 
       & #modal-content-container {
         width: 950px;

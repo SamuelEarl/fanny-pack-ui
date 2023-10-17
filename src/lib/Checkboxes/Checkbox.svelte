@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { createId } from "$lib/fp-utils";
   // Importing an external CSS file into the "style" block does not work. When this component gets packaged up and then imported into another app the styles will not be included. So the styles need to be imported into the "script" block.
   import "./checkbox.css";
 
-  export let id;
+  export let id = createId();
   export let checked;
   export let label;
   export let disabled = false;

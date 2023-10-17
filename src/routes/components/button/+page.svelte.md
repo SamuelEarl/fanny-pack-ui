@@ -3,7 +3,7 @@
   // import Prism from "prismjs";
   // // Svelte code highlighting: https://github.com/pngwn/prism-svelte
   // import "prism-svelte";
-  import { Button, Input, Select, Textarea, Tooltip, Grid, Row, Col } from "/src/lib";
+  import { Button, Input, Select, Textarea, Tooltip } from "/src/lib";
 
   let creatingAccount = false;
   let savingData = false;
@@ -135,13 +135,23 @@
 ## How to use as the submit button in a `<form>`
 
 <form method="POST" on:submit|preventDefault={handleSubmit}>
-  <Input type="text" bind:value={name} label="Your Name" />
-  <Input type="text" bind:value={subject} label="Subject" />
-  <Input type="text" bind:value={email} label="Your Email Address" />
-  <Textarea bind:value={message} label="Message" rows="5" />
-  <Button type="submit" disabled={sendingForm} formIsInvalid={checkValidation()} btnIcon="fa:send">
-    Send
-  </Button>
+  <div class="form-field">
+    <Input type="text" bind:value={name} label="Your Name" />
+  </div>
+  <div class="form-field">
+    <Input type="text" bind:value={subject} label="Subject" />
+  </div>
+  <div class="form-field">
+    <Input type="text" bind:value={email} label="Your Email Address" />
+  </div>
+  <div class="form-field">
+    <Textarea bind:value={message} label="Message" rows="5" />
+  </div>
+  <div class="form-field">
+    <Button type="submit" disabled={sendingForm} formIsInvalid={checkValidation()} btnIcon="fa:send">
+      Send
+    </Button>
+  </div>
 </form>
 
 <br><br>
@@ -234,67 +244,56 @@
 
 <br>
 
-<Grid
-  colPaddingX={10}
-  colPaddingY={10}
-  rowMarginsX={-10}
-  equalColWidths
->
-  <Row>
-    <Col>
-      <Select
-        label="Background Color"
-        options={colorOptions}
-        bind:value={selectedBgColor}
-        on:change={handleRefreshInteractiveBtns}
-      />
-    </Col>
-    <Col>
-      <Select
-        label="Font Size"
-        options={fontSizeOptions}
-        bind:value={selectedBtnFontSize}
-        on:change={handleRefreshInteractiveBtns}
-      />
-    </Col>
-  </Row>
-  <Row>
-    <Col>
-      <Select
-        label="Border Color"
-        options={colorOptions}
-        bind:value={selectedBorderColor}
-        on:change={handleRefreshInteractiveBtns}
-      />
-    </Col>
-    <Col>
-      <Select
-        label="Padding"
-        options={paddingSizeOptions}
-        bind:value={selectedBtnPadding}
-        on:change={handleRefreshInteractiveBtns}
-      />
-    </Col>
-  </Row>
-  <Row>
-    <Col>
-      <Select
-        label="Text Color"
-        options={colorOptions}
-        bind:value={selectedTextColor}
-        on:change={handleRefreshInteractiveBtns}
-      />
-    </Col>
-    <Col>
-      <Select
-        label="Width"
-        options={["auto","full"]}
-        bind:value={selectedBtnWidth}
-        on:change={handleRefreshInteractiveBtns}
-      />
-    </Col>
-  </Row>
-</Grid>
+<div class="grid">
+  <div>
+    <Select
+      label="Background Color"
+      options={colorOptions}
+      bind:value={selectedBgColor}
+      on:change={handleRefreshInteractiveBtns}
+    />
+  </div>
+  <div>
+    <Select
+      label="Font Size"
+      options={fontSizeOptions}
+      bind:value={selectedBtnFontSize}
+      on:change={handleRefreshInteractiveBtns}
+    />
+  </div>
+  <div>
+    <Select
+      label="Border Color"
+      options={colorOptions}
+      bind:value={selectedBorderColor}
+      on:change={handleRefreshInteractiveBtns}
+    />
+  </div>
+  <div>
+    <Select
+      label="Padding"
+      options={paddingSizeOptions}
+      bind:value={selectedBtnPadding}
+      on:change={handleRefreshInteractiveBtns}
+    />
+  </div>
+  <div>
+    <Select
+      label="Text Color"
+      options={colorOptions}
+      bind:value={selectedTextColor}
+      on:change={handleRefreshInteractiveBtns}
+    />
+  </div>
+  <div>
+    <Select
+      label="Width"
+      options={["auto","full"]}
+      bind:value={selectedBtnWidth}
+      on:change={handleRefreshInteractiveBtns}
+    />
+  </div>
+</div>
 
 ---
 
@@ -454,26 +453,39 @@ Depending on the colors that you use as your `primary`, `secondary`, and `tertia
 ```
 
 <style>
-  .interactive-example {
-    display: flex;
+  @media (--xs-up) {
+    .form-field {
+      margin-bottom: 15px;
+    }
 
-    & div {
-      flex: 1;
-      min-height: 150px;
+    .interactive-example {
       display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 20px;
-    }
+      flex-direction: column;
 
-    & .light-bg {
-      background-color: var(--neutral-2);
-      border-radius: var(--border-radius) 0 0 var(--border-radius);
-    }
+      & div {
+        flex: 1;
+        min-height: 150px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 20px;
+      }
 
-    & .dark-bg {
-      background-color: var(--neutral-12);
-      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      & .light-bg {
+        background-color: var(--neutral-2);
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+      }
+
+      & .dark-bg {
+        background-color: var(--neutral-12);
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      }
+    }
+  }
+
+  @media (--lg-up) {
+    .interactive-example {
+      flex-direction: row;
     }
   }
 </style>
