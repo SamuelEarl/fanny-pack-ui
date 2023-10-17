@@ -256,7 +256,7 @@ The content that you pass to the `modalBody` slot can be completely custom - bot
 | `--custom-modal-header-font-size-mobile` | `--font-size-xl`<br>Refer to this variable in the `theme.css` file. | Set the header font size for `xs`, `sm`, and `md` media query sizes. |
 | `--custom-modal-header-font-size-desktop` | `--font-size-xl`<br>Refer to this variable in the `theme.css` file. | Set the header font size for `lg` media query sizes and up. |
 | `--custom-modal-header-bg-color` | `transparent` | Set the header background color. |
-| `--custom-modal-header-font-color` | `--text-color-default` | Set the header font color. |
+| `--custom-modal-header-text-color` | `--text-color-default` | Set the header text color. |
 | `--custom-modal-header-padding-mobile` | `5px` | Set the padding around the header on `xs`, `sm`, and `md` media query sizes. |
 | `--custom-modal-header-padding-desktop` | `15px` | Set the padding around the header on `lg` media query sizes and up. |
 | `--custom-modal-footer-padding-mobile` | `5px` | Set the padding around the footer on `xs`, `sm`, and `md` media query sizes. |

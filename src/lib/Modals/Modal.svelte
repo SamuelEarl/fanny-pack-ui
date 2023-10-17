@@ -147,7 +147,7 @@
             font-weight: var(--custom-modal-header-font-weight, bold);
             padding: var(--custom-modal-header-padding-mobile, 5px);
             background-color: var(--custom-modal-header-bg-color, transparent);
-            color: var(--custom-modal-header-font-color, var(--text-color-default));
+            color: var(--custom-modal-header-text-color, var(--text-color-default));
             border-bottom: var(--border-default);
             border-radius: var(--border-radius) var(--border-radius) 0 0;
             box-shadow: 0 0 5px rgba(0,0,0,0.5);
