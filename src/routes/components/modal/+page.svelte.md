@@ -32,7 +32,7 @@
     disabled={savingEdits}
     on:closeModal={() => showModal = false}
   >
-    <div slot="modalBody" style="padding: 20px;">
+    <div slot="modalBody" style="padding: 10px;">
       <div>Modal body text goes here...</div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -54,6 +54,7 @@
         Save Data
         <span slot="btnTextDisabled">Saving Data...</span>
       </Button>
+      <Button>Another Footer Button</Button>
     </div>
     <div slot="modalFooterRight">
       <Button>Another Footer Button</Button>
@@ -87,7 +88,7 @@
     disabled={savingEdits}
     on:closeModal={() => showModal = false}
   >
-    <div slot="modalBody" style="padding: 20px;">
+    <div slot="modalBody" style="padding: 10px;">
       <div>Modal body text goes here...</div>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
     </div>
@@ -125,7 +126,7 @@ You can exclude the modal footer by leaving out the `modalFooterLeft` and `modal
     disabled={savingEdits}
     on:closeModal={() => showModalBody = false}
   >
-    <div slot="modalBody" style="padding: 20px;">
+    <div slot="modalBody" style="padding: 10px;">
       <div>This modal only has a body (i.e. there is no header or footer included).</div>
       <h3>I can put header tags inside this modal</h3>
       <p id="custom-p">I can put any custom styled content inside this modal</p>
@@ -157,7 +158,7 @@ You can exclude the modal footer by leaving out the `modalFooterLeft` and `modal
     disabled={savingEdits}
     on:closeModal={() => showModalBody = false}
   >
-    <div slot="modalBody" style="padding: 20px;">
+    <div slot="modalBody" style="padding: 10px;">
       <div>This modal only has a body (i.e. there is no header or footer included).</div>
       <h3>I can put header tags inside this modal</h3>
       <p id="custom-p">I can put any custom styled content inside this modal</p>
@@ -231,10 +232,12 @@ NOTE: You can dispatch events that will trigger the modal to be closed. For exam
 | Prop name | Type | Possible values | Default value | Description |
 | --------- | ---- | --------------- | ------------- | ----------- |
 | `title` | `string` | Any string | `""` (an empty string) | This prop will set the title of the modal.
-| `scrollingBody` | `boolean` | `true`, `false` | `false` | If this prop is set to `true`, then the modal will fill the height of the screen. Also, if the content inside the modal body overflows the available space, then a scrollbar will appear and the modal body content will scroll.
+| `scrollingBody` | `boolean` | `true`, `false` | `true` | If this prop is set to `true`, then the modal will fill the height of the screen. Also, if the content inside the modal body overflows the available space, then a scrollbar will appear and the modal body content will scroll.
 | `disabled` | `boolean` | `true`, `false` | `false` | When this prop is set to `true` then the close button in the top-right corner of the modal will be disabled. You might want to disable the close button in scenarios where a user clicks a button that will save edits to a database and you don't want users to be able to close the modal until after the edits have been saved to a database. |
 | `showCloseButton` | `boolean` | `true`, `false` | `true` | You can set `showCloseButton` to `false` for modals where you don't want to show a close button in the top-right corner. |
 | `contentBgColor` | `string` | Any CSS color value. | `var(--white)` | Set the background color of the modal to any color you want. If you are displaying dark text against a white background, then you can use the default settings. But if you are displaying something else and if you are using a `border-radius` value higher than `0`, then you might want to set this value to `transparent` so the modal content's background color does not show through at the corners. You could also set this value to a different color if you want a modal with a background color other than white. |
+| `headerPadding` | `string` | Any CSS padding value. | `10px` | Set the padding in the header. |
+| `footerPadding` | `string` | Any CSS padding value. | `10px` | Set the padding in the footer. |
 | `headerFooterBorderColor` | `string` | Any CSS color value. | `var(--neutral-3)` | Set the border color between the modal header and the modal body as well as the border color between the modal footer and the modal body to any color you want. |
 
 <br><br>

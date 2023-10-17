@@ -3,10 +3,12 @@
   import { Button } from "../Buttons";
 
   export let title = "";
-  export let scrollingBody = false;
+  export let scrollingBody = true;
   export let disabled = false;
   export let showCloseButton = true;
   export let contentBgColor = "var(--white)";
+  export let headerPadding = "10px";
+  export let footerPadding = "10px";
   export let headerFooterBorderColor = "var(--neutral-3)";
 
   const dispatch = createEventDispatcher();
@@ -56,7 +58,7 @@
       bgColor="transparent"
       borderColor="transparent"
       textColor="white"
-      padding="10px"
+      padding="7px"
       fontSize="xl"
       {disabled}
       on:click={() => dispatch("closeModal")}
@@ -68,14 +70,22 @@
   <div id="modal-content-container" class="fp-animatetop">
     <div id="modal-content" style={`background-color: ${contentBgColor};`}>
       {#if title}
-        <header id="modal-header" style={`border-color: ${headerFooterBorderColor}`}>{title}</header>      
+        <header
+          id="modal-header" 
+          style={`padding: ${headerPadding}; border-color: ${headerFooterBorderColor};`}
+        >
+          {title}
+        </header>      
       {/if}
       <!-- If the header and footer are excluded, then set a rounded border-radius on the `modal-body`. -->
       <div id="modal-body" style={`${bodyBorderRadius}`}>
         <slot name="modalBody"></slot>
       </div>
       {#if $$slots.modalFooterLeft || $$slots.modalFooterRight}
-        <footer id="modal-footer" style={`border-color: ${headerFooterBorderColor}`}>
+        <footer
+          id="modal-footer" 
+          style={`padding: ${footerPadding}; border-color: ${headerFooterBorderColor};`}
+        >
           <div id="modal-footer-left">
             <slot name="modalFooterLeft"></slot>
           </div>
@@ -122,11 +132,10 @@
       & #modal-content-container {
         position: relative;
         width: 100%;
-        padding: 10px;
+        padding: 3px;
         margin: auto;
 
         & #modal-header {
-          padding: 20px;
           border-bottom: var(--border-default);
           border-radius: var(--border-radius) var(--border-radius) 0 0;
           font-size: var(--font-size-xl);
@@ -142,7 +151,7 @@
           & #modal-footer {
             display: flex;
             flex-direction: column;
-            padding: 10px 20px;
+            gap: 7px;
             border-top: var(--border-default);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
 
@@ -152,10 +161,7 @@
               & :global(div) {
                 display: flex;
                 flex-direction: column;
-
-                & :global(button) {
-                  margin-bottom: 10px;
-                }
+                gap: 7px;
               }
             }
           }
@@ -182,15 +188,6 @@
               /* The following :global(div) and :global(button) are for elements that are inserted into the `modalFooterLeft` and `modalFooterRight` slots */
               & :global(div) {
                 flex-direction: row;
-
-                & :global(button) {
-                  margin: 0;
-                  margin-right: 10px;
-                }
-
-                & :global(button:last-child) {
-                  margin-right: 0;
-                }
               }
             }
 
