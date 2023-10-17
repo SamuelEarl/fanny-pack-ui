@@ -259,6 +259,8 @@ The content that you pass to the `modalBody` slot can be completely custom - bot
 | `--custom-modal-header-text-color` | `--text-color-default` | Set the header text color. |
 | `--custom-modal-header-padding-mobile` | `5px` | Set the padding around the header on `xs`, `sm`, and `md` media query sizes. |
 | `--custom-modal-header-padding-desktop` | `15px` | Set the padding around the header on `lg` media query sizes and up. |
+| `--custom-modal-footer-bg-color` | `transparent` | Set the footer background color. |
+| `--custom-modal-footer-text-color` | `--text-color-default` | Set the footer text color. |
 | `--custom-modal-footer-padding-mobile` | `5px` | Set the padding around the footer on `xs`, `sm`, and `md` media query sizes. |
 | `--custom-modal-footer-padding-desktop` | `15px` | Set the padding around the footer on `lg` media query sizes and up. |
 

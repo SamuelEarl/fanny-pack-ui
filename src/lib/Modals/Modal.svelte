@@ -158,6 +158,8 @@
             flex-direction: column;
             gap: 7px;
             padding: var(--custom-modal-footer-padding-mobile, 5px);
+            background-color: var(--custom-modal-footer-bg-color, transparent);
+            color: var(--custom-modal-footer-text-color, var(--text-color-default));
             border-top: var(--border-default);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
             box-shadow: 0 0 5px rgba(0,0,0,0.5);
