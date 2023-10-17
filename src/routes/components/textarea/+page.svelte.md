@@ -51,7 +51,8 @@
 
 ---
 
-## Custom Textarea Styles
+## Custom Textarea Style Props
+
 The original intention for these custom styles was to set `--custom-textarea-bg-color="transparent"` so the `<Textarea>` field would blend into the background. A few extra custom style rules have been provided for even more customizability.
 
 

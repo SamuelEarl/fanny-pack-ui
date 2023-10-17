@@ -98,7 +98,8 @@
 
 ---
 
-## Custom Input Styles
+## Custom Input Style Props
+
 The original intention for these custom styles was to set `--custom-input-bg-color="transparent"` so the `<CurrencyInput>` field would blend into the background. A few extra custom style rules have been provided for even more customizability.
 
 

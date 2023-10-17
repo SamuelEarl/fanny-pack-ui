@@ -72,10 +72,10 @@
       {#if title}
         <header
           id="modal-header" 
-          style={`padding: ${headerPadding}; border-color: ${headerFooterBorderColor};`}
+          style={`border-color: ${headerFooterBorderColor};`}
         >
           {title}
-        </header>      
+        </header>
       {/if}
       <!-- If the header and footer are excluded, then set a rounded border-radius on the `modal-body`. -->
       <div id="modal-body" style={`${bodyBorderRadius}`}>
@@ -84,7 +84,7 @@
       {#if $$slots.modalFooterLeft || $$slots.modalFooterRight}
         <footer
           id="modal-footer" 
-          style={`padding: ${footerPadding}; border-color: ${headerFooterBorderColor};`}
+          style={`border-color: ${headerFooterBorderColor};`}
         >
           <div id="modal-footer-left">
             <slot name="modalFooterLeft"></slot>
@@ -135,25 +135,32 @@
         padding: 3px;
         margin: auto;
 
-        & #modal-header {
-          border-bottom: var(--border-default);
-          border-radius: var(--border-radius) var(--border-radius) 0 0;
-          font-size: var(--font-size-xl);
-          font-weight: bold;
-        }
-
         & #modal-content {
           width: 100%;
           /* The `border-radius` style will prevent any `modal-content` background styles from spilling outside of the `modal-body`. */
           border-radius: var(--border-radius);
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
+          & #modal-header {
+            font-family: var(--custom-modal-header-font-family, var(--sans-serif));
+            font-size: var(--custom-modal-header-font-size-mobile, var(--font-size-xl));
+            font-weight: var(--custom-modal-header-font-weight, bold);
+            padding: var(--custom-modal-header-padding-mobile, 5px);
+            background-color: var(--custom-modal-header-bg-color, transparent);
+            color: var(--custom-modal-header-font-color, var(--text-color-default));
+            border-bottom: var(--border-default);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+          }
+
           & #modal-footer {
             display: flex;
             flex-direction: column;
             gap: 7px;
+            padding: var(--custom-modal-footer-padding-mobile, 5px);
             border-top: var(--border-default);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
 
             & #modal-footer-left, & #modal-footer-right {
 
@@ -179,9 +186,15 @@
 
         & #modal-content {
 
+          & #modal-header {
+            font-size: var(--custom-modal-header-font-size-desktop, var(--font-size-xl));
+            padding: var(--custom-modal-header-padding-desktop, 15px);
+          }
+
           & #modal-footer {
             flex-direction: row;
-            justify-content: space-beteen;
+            justify-content: space-between;
+            padding: var(--custom-modal-footer-padding-desktop, 15px);
 
             & #modal-footer-left, & #modal-footer-right {
 

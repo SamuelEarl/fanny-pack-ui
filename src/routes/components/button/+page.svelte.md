@@ -384,7 +384,7 @@ Another option for creating icon buttons is to pass an Iconify icon component to
 
 ---
 
-## Custom Button Styles
+## Custom Button Style Props
 
 There are situations where you might want to tweak (or even completely overhaul) the look of a button. For example, you might need uniquely styled buttons when creating a login page that has buttons for different authentication providers or maybe you want to make some minor modifications to the styles of buttons in your header or footer.
 

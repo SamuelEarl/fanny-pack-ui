@@ -279,7 +279,8 @@ Note that the `optgroup`s within the `<Select />` component will be sorted based
 
 ---
 
-## Customize Select Styles
+## Customize Select Style Props
+
 The original intention for these custom styles was to set `--custom-select-bg-color="transparent"` so the `<Select />` component would blend into the background. A few extra custom style rules have been provided for even more customizability.
 
 You can set the following custom variables:
