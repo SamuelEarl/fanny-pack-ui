@@ -102,3 +102,9 @@ export default config;
 1. Search for "sveltekit changelog".
 2. Find the latest version number.
 3. Run `npm update @sveltejs/kit@<version#>`. For example: `npm update @sveltejs/kit@1.0.0-next.445`
+
+---
+
+# How to Create an NPX Tool
+
+https://blog.shahednasser.com/how-to-create-a-npx-tool/
