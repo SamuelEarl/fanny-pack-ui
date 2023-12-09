@@ -1,6 +1,6 @@
 {
 	"name": "@fanny-pack-ui/svelte-kit",
-	"version": "0.0.116",
+	"version": "0.0.117",
 	"license": "MIT",
 	"bin": "bin/index.js",
 	"scripts": {
@@ -33,10 +33,12 @@
 		"@iconify/svelte": "^2.2.0",
 		"@sveltejs/kit": "^1.20.4",
 		"d3": "^7.6.1",
+    "degit": "^2.8.4",
 		"lodash-es": "^4.17.21",
 		"mathjs": "^11.11.1",
 		"svelte": "^4.0.0",
-		"tippy.js": "^6.3.7"
+		"tippy.js": "^6.3.7",
+		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
 		"@csstools/postcss-global-data": "^1.0.3",
@@ -70,9 +72,5 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module",
-	"dependencies": {
-		"degit": "^2.8.4",
-		"yargs": "^17.7.2"
-	}
+	"type": "module"
 }
