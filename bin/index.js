@@ -16,6 +16,8 @@
 
 // `npx @fanny-pack-ui/svelte-kit --components src/components --assets src/assets --docs src/routes/docs`
 
+// NOTE: This command will only copy files and folders into empty folders. That also means that this command will NOT overwrite any existing files or folders. If you get an error that says the destination directory is not empty, then you will have to specify a different directory to copy these files to and then you can manually drag and drop these files into the location where you want them.
+
 // See the command line help docs: `npx @fanny-pack-ui/svelte-kit --help`
 // ==========================================
 
@@ -91,9 +93,9 @@ console.log("docsDestFolder:", docsDestFolder);
   try {
     // TODO: If I end up using fsPromises, then check Node.js version for fsPromises support.
 
-    const componentEmitter = degit(componentsSrcFolder, { verbose: true });
-    const assetsEmitter = degit(assetsSrcFolder, { verbose: true });
-    const docsEmitter = degit(docsSrcFolder, { verbose: true });
+    const componentEmitter = degit(componentsSrcFolder);
+    const assetsEmitter = degit(assetsSrcFolder);
+    const docsEmitter = degit(docsSrcFolder);
     
     await componentEmitter.clone(componentsDestFolder);
     await assetsEmitter.clone(assetsDestFolder);
