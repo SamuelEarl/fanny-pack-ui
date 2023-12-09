@@ -10,6 +10,8 @@
 // ==========================================
 // HOW TO USE THIS CLI
 // ------------------------------------------
+// IMPORTANT: Create a new branch before you copy this starter kit to your project.
+
 // Navigate to your project's root directory, execute the npx command, and pass the filepaths to each option:
 
 // `npx @fanny-pack-ui/svelte-kit --components src/components --assets src/assets --docs src/routes/docs`
@@ -89,9 +91,9 @@ console.log("docsDestFolder:", docsDestFolder);
   try {
     // TODO: If I end up using fsPromises, then check Node.js version for fsPromises support.
 
-    const componentEmitter = degit(componentsSrcFolder, { force: true });
-    const assetsEmitter = degit(assetsSrcFolder, { force: true });
-    const docsEmitter = degit(docsSrcFolder, { force: true });
+    const componentEmitter = degit(componentsSrcFolder, { verbose: true });
+    const assetsEmitter = degit(assetsSrcFolder, { verbose: true });
+    const docsEmitter = degit(docsSrcFolder, { verbose: true });
     
     await componentEmitter.clone(componentsDestFolder);
     await assetsEmitter.clone(assetsDestFolder);
