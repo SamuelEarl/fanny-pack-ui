@@ -108,3 +108,5 @@ export default config;
 # How to Create an NPX Tool
 
 https://blog.shahednasser.com/how-to-create-a-npx-tool/
+
+IMPORTANT NOTE: The package name that you use as the key in the `bin` field in your `package.json` file cannot contain `@` or `/` symbols. If you want to separate words, then you have to use dashes to separate them.
