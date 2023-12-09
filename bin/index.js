@@ -2,13 +2,19 @@
 
 // TODOS:
 // * Read or watch tutorials about the Yargs package to create CLI tools.
+// * Explain that if this command isn't working, then you might need to run `npx clear-npx-cache`. See https://stackoverflow.com/a/75815920/9453009. This should probably be included in the "Get Started" page under a "Troubleshooting" section.
+//     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
+// * Update the "Get Started" docs in this repo once I get everything working properly.
 
 
 // ==========================================
 // HOW TO USE THIS CLI
 // ------------------------------------------
 // Navigate to your project's root directory, execute the npx command, and pass the filepaths to each option:
+
 // `npx @fanny-pack-ui/svelte-kit --components src/components --assets src/assets --docs src/routes/docs`
+
+// See the command line help docs: `npx @fanny-pack-ui/svelte-kit --help`
 // ==========================================
 
 
@@ -26,7 +32,7 @@ import yargs from "yargs";
 // (1) The path to a folder where the components should be stored. Defaults to "src/components".
 // (2) The path to a folder where the assets files should be stored. Defaults to "src/assets".
 // (3) The path to a folder where the docs will be located. Defaults to "src/routes/docs".
-// Look at other possible arguments that I want to use based on the Get Started instructions (https://fanny-pack-ui.pages.dev/get-started).
+// TODO: Look at other possible arguments that I want to use based on the Get Started instructions (https://fanny-pack-ui.pages.dev/get-started).
 
 // const argv = yargs(process.argv.slice(2)).options({
 //   a: { type: "boolean", default: false },
@@ -38,9 +44,9 @@ import yargs from "yargs";
 // }).argv;
 
 const argv = yargs(process.argv.slice(2)).options({
-  comp: { type: "string", alias: "components", default: "src/components" },
-  assets: { type: "string", default: "src/assets" },
-  docs: { type: "string", default: "src/routes/docs" }
+  c: { type: "string", alias: "components", default: "src/components" },
+  a: { type: "string", alias: "assets", default: "src/assets" },
+  d: { type: "string", alias: "docs", default: "src/routes/docs" }
 }).argv;
 
 console.log("CLI Arguments:", argv);

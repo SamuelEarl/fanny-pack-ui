@@ -1,6 +1,6 @@
 {
 	"name": "@fanny-pack-ui/svelte-kit",
-	"version": "0.0.120",
+	"version": "0.0.121",
 	"license": "MIT",
 	"bin": "bin/index.js",
 	"scripts": {
