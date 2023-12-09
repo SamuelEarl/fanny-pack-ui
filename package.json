@@ -1,10 +1,8 @@
 {
 	"name": "@fanny-pack-ui/svelte-kit",
-	"version": "0.0.118",
+	"version": "0.0.119",
 	"license": "MIT",
-	"bin": {
-    "install-fpui-svelte-kit": "bin/index.js"
-  },
+	"bin": "bin/index.js",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
