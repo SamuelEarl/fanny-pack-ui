@@ -62,17 +62,20 @@ const __dirname = dirname(__filename);
 
 const componentsSrcFolder = "https://github.com/SamuelEarl/fanny-pack-ui/src/lib";
 console.log("componentsSrcFolder:", componentsSrcFolder);
-const componentsDestFolder = path.join(__dirname, argv.components);
+// const componentsDestFolder = path.join(__dirname, argv.components);
+const componentsDestFolder = argv.components;
 console.log("componentsDestFolder:", componentsDestFolder);
 
 const assetsSrcFolder = "https://github.com/SamuelEarl/fanny-pack-ui/src/assets";
 console.log("assetsSrcFolder:", assetsSrcFolder);
-const assetsDestFolder = path.join(__dirname, argv.assets);
+// const assetsDestFolder = path.join(__dirname, argv.assets);
+const assetsDestFolder = argv.assets;
 console.log("assetsDestFolder:", assetsDestFolder);
 
 const docsSrcFolder = "https://github.com/SamuelEarl/fanny-pack-ui/src/routes/docs";
 console.log("docsSrcFolder:", docsSrcFolder);
-const docsDestFolder = path.join(__dirname, argv.docs);
+// const docsDestFolder = path.join(__dirname, argv.docs);
+const docsDestFolder = argv.docs;
 console.log("docsDestFolder:", docsDestFolder);
 
 
@@ -80,9 +83,9 @@ console.log("docsDestFolder:", docsDestFolder);
   try {
     // TODO: If I end up using fsPromises, then check Node.js version for fsPromises support.
 
-    const componentEmitter = degit(componentsSrcFolder);
-    const assetsEmitter = degit(assetsSrcFolder);
-    const docsEmitter = degit(docsSrcFolder);
+    const componentEmitter = degit(componentsSrcFolder, { force: true });
+    const assetsEmitter = degit(assetsSrcFolder, { force: true });
+    const docsEmitter = degit(docsSrcFolder, { force: true });
     
     await componentEmitter.clone(componentsDestFolder);
     await assetsEmitter.clone(assetsDestFolder);
