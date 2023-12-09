@@ -2,9 +2,7 @@
 	"name": "@fanny-pack-ui/svelte-kit",
 	"version": "0.0.116",
 	"license": "MIT",
-  "bin": {
-    "install-fpui-svelte-kit": "bin/index.js"
-  },
+	"bin": "bin/index.js",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -46,6 +44,7 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
 		"@sveltejs/package": "^2.0.0",
+		"@types/yargs": "^17.0.32",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"dotenv": "^16.0.0",
@@ -71,5 +70,9 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"degit": "^2.8.4",
+		"yargs": "^17.7.2"
+	}
 }

@@ -107,6 +107,33 @@ export default config;
 
 # How to Create an NPX Tool
 
-https://blog.shahednasser.com/how-to-create-a-npx-tool/
+See these posts (there is good information in each one and they are short, so read them both):
+* https://deepgram.com/learn/npx-script
+* https://blog.shahednasser.com/how-to-create-a-npx-tool/
 
-IMPORTANT NOTE: The package name that you use as the key in the `bin` field in your `package.json` file cannot contain `@` or `/` symbols. If you want to separate words, then you have to use dashes to separate them.
+## Deleting globally installed packages
+
+You can check which npm packages are installed globally with `npm ls -g`. When you run that command it will show you where those packages are installed (e.g. `/home/<USER>/.volta/tools/image/node/16.17.0/lib`). To delete those globally installed packages I had to manually delete those in the file system because `npm uninstall -g <package-name>` threw errors and would not remove the packages. Hmmm.
+
+## NPX Naming Conventions
+
+You can let users invoke your command line application in two different ways:
+
+1. Invoke it with the name of your package: `npx @fanny-pack-ui/svelte-kit`
+2. Invoke it with a different name: `npx install-fpui-svelte-kit` (`create-react-app` is an example of this). In this case you need to set a different name for your command line application that will be used to invoke your command line application. This name can be different from the name of your package.
+
+If you want to use the first pattern, then you need to set your `bin` field in your `package.json` file like this:
+
+```
+"bin": "bin/index.js",
+```
+
+If you want to use the second pattern, then you need to set your `bin` field like this:
+
+```
+"bin": {
+  "install-fpui-svelte-kit": "bin/index.js"
+},
+```
+
+Note that in this second version the package name that you use as the key in the `bin` field cannot contain symbols such as `@` or `/`. If you want to separate words, then you have to use dashes to separate them.

@@ -6,7 +6,7 @@
 </script>
 
 # Checkbox
-This component will create a single checkbox. If you want to create multiple checkboxes that are part of the same group, then look at the [Checkbox Group](/components/checkbox-group) component.
+This component will create a single checkbox. If you want to create multiple checkboxes that are part of the same group, then look at the [Checkbox Group](/docs/components/checkbox-group) component.
 
 ---
 

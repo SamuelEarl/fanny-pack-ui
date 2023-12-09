@@ -36,7 +36,7 @@
     },
     {
       sectionHeading: "Components",
-      sectionUrlPrefix: "/components",
+      sectionUrlPrefix: "/docs/components",
       sectionItems: [
         {
           icon: "carbon:account",
@@ -143,7 +143,7 @@
     },
     {
       sectionHeading: "Data Viz",
-      sectionUrlPrefix: "/data-viz",
+      sectionUrlPrefix: "/docs/data-viz",
       sectionItems: [
         {
           icon: "tabler:chart-area-line",
@@ -190,7 +190,7 @@
     },
     {
       sectionHeading: "Utility Classes",
-      sectionUrlPrefix: "/utility-classes",
+      sectionUrlPrefix: "/docs/utility-classes",
       sectionItems: [
         {
           icon: "bx:show",

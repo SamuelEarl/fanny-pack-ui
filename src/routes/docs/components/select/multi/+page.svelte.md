@@ -32,7 +32,7 @@ I need to study accessibility:
 
 Because of the different ways of selecting options (depending on the browser), and because you have to inform the user that multiple selection is available, it is more user-friendly to use checkboxes instead of a `<select>` element with the `multiple` attribute. See https://www.w3schools.com/tags/att_select_multiple.asp.
 
-This component is essentially the [`<CheckboxGroup>`](/components/checkbox-group) component inside a dropdown menu.
+This component is essentially the [`<CheckboxGroup>`](/docs/components/checkbox-group) component inside a dropdown menu.
 
 ---
 
@@ -115,7 +115,7 @@ This component is essentially the [`<CheckboxGroup>`](/components/checkbox-group
 | Prop name | Type | Possible values | Default value | Description |
 | --------- | ---- | --------------- | ------------- | ----------- |
 | `label`<br>(optional) | `string` | Any string | `""` (an empty string) | The text for the `<label>` element that is displayed above the `<select>` element. If this prop is not provided, then no label will be displayed. |
-| `tooltipText` (optional) | `string` | Any string | NA | This prop accepts a string argument that will act as the tooltip text when a user hovers over the tooltip element. Multi-line strings can be created with newline characters that are inside of backticks, which are inside of curly braces. (See the [Tooltip](/components/tooltip) component for code examples.) If no `tooltipText` is provided, then no tooltip will be displayed. |
+| `tooltipText` (optional) | `string` | Any string | NA | This prop accepts a string argument that will act as the tooltip text when a user hovers over the tooltip element. Multi-line strings can be created with newline characters that are inside of backticks, which are inside of curly braces. (See the [Tooltip](/docs/components/tooltip) component for code examples.) If no `tooltipText` is provided, then no tooltip will be displayed. |
 | `options` | `array` | Any array | NA | This should be an array of strings, numbers, booleans, or objects. This array will be used to populate the `<option>` elements in the `<SelectMulti />` component's dropdown list. |
 | `optionLabel` (only used with arrays of objects) | `string` | Any property name from the objects that are passed to the `options` array | `null` | When the `optionLabel` prop is used with an array of objects (which are passed to the `options` prop), the `optionLabel` prop will provide the property name that will be used as the label text for the `<Select>` component's options. |
 | `bind:values` | `array` | A collection of elements from the `options` array | `undefined` | The array variable that is passed to this prop will hold the values that the user will select. This array will usually be an empty array, but if you want any values to be pre-selected, then you could include any of the values from the `options` array. |

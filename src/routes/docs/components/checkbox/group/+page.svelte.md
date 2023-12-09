@@ -161,7 +161,7 @@ oversized wheels=true&mud tires=true
 ```
 
 ### Svelte Checkboxes
-In Svelte, you can also create individual checkboxes, similar to how you would in plain HTML. (The [`<Checkbox>`](/components/checkbox) component is an example of this.) But Svelte also gives you a `bind:group` option. The `bind:group` option allows you to group a set of checkboxes together and the selected values from those checkboxes will populate a single array that could then be sent to the backend for storage or processing. So instead of a set of `name`/`value` pairs for each checkbox, the request `body` would include an array that contains the values from all the checkboxes that the user selected.
+In Svelte, you can also create individual checkboxes, similar to how you would in plain HTML. (The [`<Checkbox>`](/docs/components/checkbox) component is an example of this.) But Svelte also gives you a `bind:group` option. The `bind:group` option allows you to group a set of checkboxes together and the selected values from those checkboxes will populate a single array that could then be sent to the backend for storage or processing. So instead of a set of `name`/`value` pairs for each checkbox, the request `body` would include an array that contains the values from all the checkboxes that the user selected.
 
 So the `bind:group` option for Svelte checkboxes is a nice add-on feature that does not exist in plain HTML. So when working with Svelte checkboxes, you could use either regular checkboxes or "grouped" checkboxes.
 

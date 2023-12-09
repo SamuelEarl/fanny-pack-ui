@@ -31,63 +31,63 @@
   </div>
   <div class="section-heading">Components</div>
   <div class="nav-links">
-    <a href="/components/accordion" class:active={currentPath === "/components/accordion"}>
+    <a href="/docs/components/accordion" class:active={currentPath === "/docs/components/accordion"}>
       <Icon icon="carbon:account" /> &nbsp; Accordion
     </a>
-    <a href="/components/button" class:active={currentPath === "/components/button"}>
+    <a href="/docs/components/button" class:active={currentPath === "/docs/components/button"}>
       <Icon icon="carbon:button-centered" /> &nbsp; Button
     </a>
-    <a href="/components/checkbox/single" class:active={currentPath === "/components/checkbox/single"}>
+    <a href="/docs/components/checkbox/single" class:active={currentPath === "/docs/components/checkbox/single"}>
       <Icon icon="carbon:checkbox-checked" /> &nbsp; Checkbox (single)
     </a>
-    <a href="/components/checkbox/group" class:active={currentPath === "/components/checkbox/group"}>
+    <a href="/docs/components/checkbox/group" class:active={currentPath === "/docs/components/checkbox/group"}>
       <Icon icon="carbon:list-boxes" /> &nbsp; Checkbox (group)
     </a>
-    <a href="/components/date-picker" class:active={currentPath === "/components/date-picker"}>
+    <a href="/docs/components/date-picker" class:active={currentPath === "/docs/components/date-picker"}>
       <Icon icon="carbon:calendar" /> &nbsp; Date Picker
     </a>
     COLOR PICKER SHOULD BE COMMENTED OUT: See my comment about a color picker component in the TODOS.md file.
-    <a href="/components/color-picker" class:active={currentPath === "/components/color-picker"}>
+    <a href="/docs/components/color-picker" class:active={currentPath === "/docs/components/color-picker"}>
       <Icon icon="clarity:color-picker-solid" /> &nbsp; Color Picker
     </a>
-    <a href="/components/drop-zone" class:active={currentPath === "/components/drop-zone"}>
+    <a href="/docs/components/drop-zone" class:active={currentPath === "/docs/components/drop-zone"}>
       <Icon icon="pixelarticons:drop-area" /> &nbsp; Drop Zone (file upload)
     </a>
     FLEXGRID SHOULD BE COMMENTED OUT
-    <a href="/components/flex-grid" class:active={currentPath === "/components/flex-grid"}>
+    <a href="/docs/components/flex-grid" class:active={currentPath === "/docs/components/flex-grid"}>
       <Icon icon="ph:layout-light" /> &nbsp; FlexGrid (layout)
     </a>
-    <a href="/components/grid" class:active={currentPath === "/components/grid"}>
+    <a href="/docs/components/grid" class:active={currentPath === "/docs/components/grid"}>
       <Icon icon="ph:layout-light" /> &nbsp; Grid (layout)
     </a>
-    <a href="/components/input/currency" class:active={currentPath === "/components/input/currency"}>
+    <a href="/docs/components/input/currency" class:active={currentPath === "/docs/components/input/currency"}>
       <Icon icon="carbon:currency-dollar" /> &nbsp; Input (currency)
     </a>
-    <a href="/components/input/misc" class:active={currentPath === "/components/input/misc"}>
+    <a href="/docs/components/input/misc" class:active={currentPath === "/docs/components/input/misc"}>
       <Icon icon="radix-icons:input" /> &nbsp; Input (text, number, email)
     </a>
-    <a href="/components/modal" class:active={currentPath === "/components/modal"}>
+    <a href="/docs/components/modal" class:active={currentPath === "/docs/components/modal"}>
       <Icon icon="carbon:popup" /> &nbsp; Modal (popup window)
     </a>
-    <a href="/components/radio-button" class:active={currentPath === "/components/radio-button"}>
+    <a href="/docs/components/radio-button" class:active={currentPath === "/docs/components/radio-button"}>
       <Icon icon="carbon:radio-button-checked" /> &nbsp; Radio Button
     </a>
-    <a href="/components/select/single" class:active={currentPath === "/components/select/single"}>
+    <a href="/docs/components/select/single" class:active={currentPath === "/docs/components/select/single"}>
       <Icon icon="icon-park-outline:list-view" /> &nbsp; Select (single)
     </a>
-    <a href="/components/select/multi" class:active={currentPath === "/components/select/multi"}>
+    <a href="/docs/components/select/multi" class:active={currentPath === "/docs/components/select/multi"}>
       <Icon icon="fluent:multiselect-ltr-20-filled" /> &nbsp; Select (multi)
     </a>
-    <a href="/components/tabs" class:active={currentPath === "/components/tabs"}>
+    <a href="/docs/components/tabs" class:active={currentPath === "/docs/components/tabs"}>
       <Icon icon="ic:outline-tab" /> &nbsp; Tabs (tabbed content)
     </a>
-    <a href="/components/textarea" class:active={currentPath === "/components/textarea"}>
+    <a href="/docs/components/textarea" class:active={currentPath === "/docs/components/textarea"}>
       <Icon icon="bi:textarea-resize" /> &nbsp; Textarea
     </a>
-    <a href="/components/toast" class:active={currentPath === "/components/toast"}>
+    <a href="/docs/components/toast" class:active={currentPath === "/docs/components/toast"}>
       <Icon icon="carbon:information-square" /> &nbsp; Toast (notification pane)
     </a>
-    <a href="/components/tooltip" class:active={currentPath === "/components/tooltip"}>
+    <a href="/docs/components/tooltip" class:active={currentPath === "/docs/components/tooltip"}>
       <Icon icon="carbon:chat" /> &nbsp; Tooltip
     </a>
   </div>

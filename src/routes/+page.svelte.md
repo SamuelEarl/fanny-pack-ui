@@ -1,5 +1,6 @@
 <script lang="ts">
   import Logo from "/src/assets/images/fanny-pack.svg";
+  import GitHub from "/src/assets/images/github.svg";
 
   // Get app version from package.json using Vite: https://stackoverflow.com/questions/67194082/how-can-i-display-the-current-app-version-from-package-json-to-the-user-using-vi.
   let version = __APP_VERSION__;
@@ -18,7 +19,12 @@
 
 ---
 
-Version: {version}
+<div id="github-icon-version-container">
+  <a href="https://github.com/SamuelEarl/fanny-pack-ui">
+    <img src={GitHub} alt="GitHub" />
+  </a>
+  <span>Version: {version}</span>
+</div>
 
 ---
 
@@ -333,6 +339,20 @@ As I have debated the ideas of CSS variables vs utility classes and which would 
 
       & img {
         width: 512px;
+      }
+    }
+  }
+
+  #github-icon-version-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    & a {
+      border-bottom: none;
+
+      & img {
+        width: 30px;
       }
     }
   }
