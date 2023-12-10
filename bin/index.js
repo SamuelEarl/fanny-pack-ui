@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-// TODOS:
-// * Read or watch tutorials about the Yargs package to create CLI tools.
-// * Explain that if this command isn't working, then you might need to run `npx clear-npx-cache`. See https://stackoverflow.com/a/75815920/9453009. This should probably be included in the "Get Started" page under a "Troubleshooting" section.
-//     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
-// * Update the "Get Started" docs in this repo once I get everything working properly.
-
-
+// ==========================================
+// Fanny Pack UI is a starter kit for UI components. You can use this starter and customize things as much as you want.
+// This npx script will copy the necessary files from the Fanny Pack repo to the user's project.
 // ==========================================
 // HOW TO USE THIS CLI
 // ------------------------------------------
@@ -22,8 +18,13 @@
 // ==========================================
 
 
-// Fanny Pack UI is a starter kit for UI components. You can use this starter and customize things as much as you want.
-// This npx script will copy the necessary files from the Fanny Pack repo to the user's project.
+// TODOS:
+// * Read or watch tutorials about the Yargs package to create CLI tools.
+// * Explain that if this command isn't working, then you might need to run `npx clear-npx-cache`. See https://stackoverflow.com/a/75815920/9453009. This should probably be included in the "Get Started" page under a "Troubleshooting" section.
+//     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
+// * Update the "Get Started" docs in this repo once I get everything working properly.
+
+
 import path from "path";
 import { promises as fsPromises } from "fs";
 // How to get working directory with ES Modules: https://stackoverflow.com/a/75041053/9453009
