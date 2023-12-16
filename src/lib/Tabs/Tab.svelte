@@ -15,7 +15,7 @@
 	registerTab(tab);
 </script>
 
-<div
+<button
   class={`fp-tabs-tab ${tabStyle}`}
   class:active="{$selectedTab === tab}"
   style={`${tabPaddingStyle} ${tabFontSizeStyle}`}
@@ -24,7 +24,7 @@
   on:keyup="{() => selectTab(tab)}"
 >
 	<slot></slot>
-</div>
+</button>
 
 <style>
   @media (--xs-up) {

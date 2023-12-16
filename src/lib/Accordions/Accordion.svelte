@@ -19,7 +19,7 @@
 <!-- Accordion Wrapper -->
 <div class={`fp-accordion-wrapper`} style={`margin-bottom:${spaceBetweenAccordions}`}>
   <!-- Accordion Title -->
-  <div
+  <button
     {id}
     class="fp-accordion-title"
     class:active={open}
@@ -28,7 +28,7 @@
     on:keyup={() => open = !open}
   >
     {title}
-  </div>
+  </button>
 
   <!-- Accordion Panel -->
   {#if open}
@@ -51,6 +51,8 @@
     }
 
     & .fp-accordion-title {
+      width: 100%;
+      text-align: left;
       border: var(--border-default);
       border-radius: var(--border-radius);
       background-color: var(--bg-color-element-default);

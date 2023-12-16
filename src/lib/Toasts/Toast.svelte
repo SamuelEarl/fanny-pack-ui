@@ -51,10 +51,19 @@
     <div class="msg">
       {$toastContent.msg}
     </div>
-    <div class="close" on:click={() => {
-      clearTimeout(timeout);
-      toastContent.set(null);
-    }}>&times;</div>
+    <button
+      class="close" 
+      on:click={() => {
+        clearTimeout(timeout);
+        toastContent.set(null);
+      }}
+      on:keyup={() => {
+        clearTimeout(timeout);
+        toastContent.set(null);
+      }}
+    >
+      &times;
+    </button>
   </div>
 {/if}
 

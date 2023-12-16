@@ -1,4 +1,4 @@
-<!-- `<select>` elements are difficult to style while maintaining accessibility. The easiest (and possibly the best) way to create an accessible `<Select />` component is to use the native `<select>` element and simply style the button part while leaving the dropdown as is provided natively by the browser. See https://www.filamentgroup.com/lab/select-css.html -->
+<!-- `<select>` elements are difficult to style while maintaining accessibility. The easiest (and possibly the best) way to create an accessible `<Select />` component is to use the native `<select>` element and simply style the button part while leaving the dropdown as it is provided natively by the browser. See https://www.filamentgroup.com/lab/select-css.html -->
 
 <script lang="ts">
 	import { onMount, afterUpdate } from "svelte";
