@@ -21,7 +21,7 @@ The CSS theme that you create on the [Customize Theme](/customize-theme) page us
 1. Create a `/src/assets/` folder in your SvelteKit project.
 2. Open your `node_modules/@fanny-pack-ui/svelte-kit/dist/` directory and copy the `styles/` directory into your `/src/assets/` directory. The following is an explanation of the files that are inside the `styles/` directory. You can modify the `theme.css` and `base.css` files to update your theme:
     1. `preflight.css` : This contains TailwindCSS's [Preflight](https://tailwindcss.com/docs/preflight) code with a few minor modifications. (You can read the comments at the top of the `preflight.css` file for details of the modifications.) Since Preflight is built on top of [modern-normalize](https://github.com/sindresorhus/modern-normalize), this file is used instead of a normalize CSS file.
-    2. `theme.css` : This file contains the CSS variables that make up your theme. Follow the instructions in this file to create your theme. You will update the color palette and any other variable values that you feel are necessary.
+    2. `theme.css` : This file contains the CSS variables that make up your theme. Follow the instructions in this file to create your theme. You should update the color palette and any other variable values that you feel are necessary.
     3. `utility-classes.css` and the `utility-classes` folder : The `utility-classes.css` file imports the utility classes that are used throughout the components and that can be used in your app. Feel free to add more utility classes as needed, but don't change the existing class names otherwise you will break styles in the components. The utility classes are organized in the `utility-classes` folder.
     4. `base.css` : This file contains default styles for HTML elements. The `preflight.css` file clears many of the default styles for HTML elements, so you need to define default styles for your HTML elements in this file. Feel free to change any or all of the base styles in this file.
     5. `media-queries.css` : This file contains the media queries that are used in the components and that can be used throughout your app.
@@ -52,7 +52,7 @@ Import the `/src/assets/styles/main.css` file into the `<script>` tag of the `/s
 
 This is only my personal preference. You do what works for you.
 
-I am not a big fan of either Prettier or ESLint for formatting. (Maybe I am missing something that would make me really love one of those options.) Prettier has limited customizable options (e.g. no `brace-style` option&mdash;what?!&mdash;and other default formatting that I don't love but am unable to change) and ESLint doesn't format things very well (e.g. the `brace-style` option left `else` and `catch` blocks improperly indented. Ugh! 
+I am not a big fan of either Prettier or ESLint for formatting. (Maybe I am missing something that would make me really love one of those options.) Prettier has limited customizable options (e.g. no `brace-style` option&mdash;what?!&mdash;and other default formatting that I don't love but am unable to change) and ESLint doesn't format things very well (e.g. the `brace-style` option left `else` and `catch` blocks improperly indented). Ugh! 
 
 The best option (for me at least) might be to create a lint script that uses ESLint to give me warnings about poorly formatted code and then I will just manually fix those issues myself (instead of using the `--fix` flag to auto format my code). 
 

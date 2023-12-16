@@ -18,7 +18,7 @@
 
 
 // TODOS:
-// * Read or watch tutorials about the Yargs package to create CLI tools.
+// * Read or watch tutorials about the Yargs package to create CLI tools. UPDATE: I don't know if I need to do that anymore. Maybe I do, but maybe I don't.
 // * Explain that if this command isn't working, then you might need to run `npx clear-npx-cache`. See https://stackoverflow.com/a/75815920/9453009. This should probably be included in the "Get Started" page under a "Troubleshooting" section.
 //     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
 // * Update the "Get Started" docs in this repo once I get everything working properly.
@@ -37,6 +37,7 @@ import yargs from "yargs";
 // (2) The path to a folder where the assets files should be stored. Defaults to "src/assets".
 // (3) The path to a folder where the docs will be located. Defaults to "src/routes/docs".
 // TODO: Look at other possible arguments that I want to use based on the Get Started instructions (https://fanny-pack-ui.pages.dev/get-started).
+// * How to npm install packages through this npx script like Iconify and others that are dependencies of Fanny Pack?
 
 // const argv = yargs(process.argv.slice(2)).options({
 //   a: { type: "boolean", default: false },
@@ -76,6 +77,16 @@ console.log("componentsSrcFolder:", componentsSrcFolder);
 const componentsDestFolder = argv.components;
 console.log("componentsDestFolder:", componentsDestFolder);
 
+// TODO: Move the styles folder from /src/lib/ to /src/assets/. Right now the /src/assets/styles/ folder just references the styles in /src/lib/styles/, which is what gets copied over. 
+// The /src/assets/styles/ folder should include the following folders and files:
+// utility-classes/
+// base.css
+// fonts.css
+// main.css
+// media-queries.css
+// preflight.css
+// theme.css
+// utility-classes.css
 const assetsSrcFolder = "https://github.com/SamuelEarl/fanny-pack-ui/src/assets";
 console.log("assetsSrcFolder:", assetsSrcFolder);
 // const assetsDestFolder = path.join(__dirname, argv.assets);
