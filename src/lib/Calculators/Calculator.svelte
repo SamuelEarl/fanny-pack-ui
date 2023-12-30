@@ -421,6 +421,16 @@
 	}
 </script>
 
+<!-- 
+  This component is throwing the following A11y warnings:
+  * A11y: Non-interactive element cannot have nonnegative tabIndex value.
+  * A11y: Non-interactive element <div> should not be assigned mouse or keyboard event listeners.
+
+  I am including a11y ignore comments for the following reasons:
+  * The <div> element has a `tabindex="0"` attribute so keyboard users can tab to the calculator component. 
+  * The <div> element has a `keydown` listener so keyboard users key presses will handled appropriately.
+-->
+<!-- svelte-ignore a11y-no-noninteractive-tabindex a11y-no-noninteractive-element-interactions -->
 <div
   class="calculator"  
   role="dialog"
