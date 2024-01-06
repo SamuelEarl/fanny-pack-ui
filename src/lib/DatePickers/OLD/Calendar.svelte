@@ -5,7 +5,7 @@
   import { getInnerLocale } from "./locale";
   import type { Locale } from "./locale";
   import { Label } from "../Labels";
-  import { createId } from "../fp-utils";
+  import { createId } from "../utils";
 
   export let label = "";
   // I am not documenting this prop in the docs because I wanted to keep a "flat" look for these components as much as possible. However, this prop needs to stay here because the `<DateInput>` component passes `true` to this prop.

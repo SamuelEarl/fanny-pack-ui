@@ -52,3 +52,12 @@ export async function calculateOptionsListHeight(id, showSelectOptionsList, tick
     }
   }
 }
+
+/**
+ * This function will add a delay before the line of code that comes after it is 
+ * executed, similar to using setTimeout().
+ * This is borrowed from https://www.sitepoint.com/delay-sleep-pause-wait/.
+ */
+export function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

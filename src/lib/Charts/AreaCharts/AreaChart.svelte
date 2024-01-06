@@ -6,7 +6,7 @@
   import { throttle } from "lodash-es";
   import type { Margin } from "../types-charts";
   import { AREA_CHART_KEY } from "./area-chart-utils";
-  import { createId } from "../../fp-utils";
+  import { createId } from "../../utils";
 
   export let data = [];
   export let xValueId: string;

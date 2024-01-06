@@ -114,6 +114,7 @@ These variables are organized in the same way that Tailwind organizes their util
 }
 
 
+/* TODO: Replace all of the box-shadows that are used as borders with outlines, where possible. The box-shadows that provide a sense of depth will stay. */
 /* BOX SHADOW */
 :root {
   --box-shadow-default: 0 0 0 2px var(--border-color-default);

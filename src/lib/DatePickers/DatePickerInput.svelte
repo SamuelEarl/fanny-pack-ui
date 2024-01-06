@@ -19,7 +19,7 @@
   import Calendar from "./DatePickerCalendar.svelte";
   import { getDateObjFromISODate, isValidDate } from "./utils";
   import { Label } from "../Labels";
-  import { createId } from "../fp-utils";
+  import { createId } from "../utils";
 
   export let label = "";
   export let value:string;

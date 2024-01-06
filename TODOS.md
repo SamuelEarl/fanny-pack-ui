@@ -1,4 +1,7 @@
 # TODOS
+
+I want to make each component respond to touch events for native mobile apps. If I use something like Ionic's Capacitor or Tauri to compile my web app into mobile apps, then I want to make sure that these components will work properly on native mobile apps.
+
 NOTE: Maybe I could look at how to theme the Carbon components rather than create my own component library. Actually, I don't think I could contribute themable components to that project because that project is based on the Carbon Design System and I want to create components that can be themed to fit other design systems. But maybe I could base my components off of the Carbon components for Svelte, so I could see how they create their components and use some of their ideas.
 
 * High Priority:

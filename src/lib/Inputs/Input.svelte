@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createId } from "../fp-utils";
+  import { createId } from "../utils";
   import { Label } from "../Labels";
 
   export let type = "text";

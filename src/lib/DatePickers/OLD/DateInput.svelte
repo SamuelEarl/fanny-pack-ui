@@ -11,7 +11,7 @@
   import type { FormatToken } from "./parse";
   import Calendar from "./Calendar.svelte";
   import { Label } from "../Labels";
-  import { createId } from "../fp-utils";
+  import { createId } from "../utils";
 
   export let label = "";
   export let padding = "var(--date-picker-default-padding-v) var(--date-picker-default-padding-h)";

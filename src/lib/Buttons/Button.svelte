@@ -1,5 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import { createEventDispatcher } from "svelte";
+  import { delay } from "$lib/utils";
 
   export let type = "button";
   export let bgColor = "var(--btn-default-bg-color)";
@@ -18,8 +20,10 @@
   export let rotateBtnIcon = "0deg";
   export let rotateBtnIconDisabled = "0deg";
 
-  // Set the background, border, and text colors.
-  const btnColorStyles = `background-color:${bgColor}; border-color:${borderColor}; color:${textColor};`;
+  const dispatch = createEventDispatcher();
+
+  // Set the background, border, outline, and text colors.
+  const btnColorStyles = `background-color:${bgColor}; border-color:${borderColor}; outline-color:${borderColor}; color:${textColor};`;
   // Set the padding and font sizes.
   const btnSizeStyles = `padding:${padding}; font-size:${fontSize};`;
 
@@ -46,25 +50,53 @@
   }
   const btnIconStyles = getBtnIconStyles();
 
-  function addBoxShadow(event) {
-    event.target.style.boxShadow = `0 0 0 2px ${borderColor}`;
+  function addOutline(event) {
+    event.target.style.outlineWidth = "2px";
+    // If the user tabs over to the button, then change the outlineStyle to "dashed".
+    if (event.key === "Tab") {
+      event.target.style.outlineStyle = "dashed";
+    }
   }
 
-  function removeBoxShadow(event) {
-    event.target.style.boxShadow = "none";
+  function removeOutline(event) {
+    console.log("lost focus");
+    event.target.style.outlineWidth = "0";
+    // When the button loses focus, then reset the outlineStyle to the default style.
+    event.target.style.outlineStyle = "solid";
+  }
+
+  function addExtraOutline(event) {
+    event.target.style.outlineWidth = "4px";
+  }
+
+  function removeExtraOutline(event) {
+    event.target.style.outlineWidth = "2px";
   }
 </script>
 
 <!-- If the button is a "submit" button in a form and if the `formIsInvalid` then disable the button, but do NOT show the disabled icon or text. Just prevent the user from submitting the form. -->
+<!-- Even though I am using hover states to add and remove the button outline, I need to use on:mouseenter and on:mouseleave in order to add and remove the button outline after a user clicks a button. If I don't use those mouse event listeners, then the outlineWidth will not get reset to its default size when a user hovers away from the button. -->
 <button
   {type}
   class={`fp-btn ${type === "submit" && formIsInvalid ? "form-is-invalid" : ""} ${borderColor === "transparent" ? "transparent-border" : "non-transparent-border"}`}
   style={`${btnColorStyles} ${btnSizeStyles} ${width === "full" ? "width: 100%" : ""}`}
   {disabled}
   {...$$restProps}
-  on:click
-  on:mouseenter={addBoxShadow}
-  on:mouseleave={removeBoxShadow}
+  on:mouseenter={addOutline}
+  on:mouseleave={removeOutline}
+  on:keyup={addOutline}
+  on:blur={removeOutline}
+  on:click={async (event) => {
+    addExtraOutline(event);
+    await delay(150);
+    removeExtraOutline(event);
+    dispatch("click");
+  }}
+  on:touchstart={addOutline}
+  on:touchend={async (event) => {
+    await delay(150);
+    removeOutline(event);
+  }}
 >
   <!-- Button Text -->
   {#if $$slots.btnTextDisabled && disabled}
@@ -101,14 +133,21 @@
     .fp-btn {
       border-width: 2px;
       border-style: solid;
+      outline-width: 0;
+      outline-style: solid;
       font-weight: bold;
       border-radius: var(--border-radius);
       display: flex;
       align-items: center;
       justify-content: center;
 
+      /* Since I have to use on:mouseenter and on:mouseout to reset the outlineWidth, I don't know if this hover rule is actually doing anything. But I am leaving it here just in case is does affect the button styles. */
+      &:hover {
+        outline-width: 2px;
+      }
+
       &:disabled {
-        box-shadow: none !important;
+        outline-color: var(--border-color-disabled) !important;
         pointer-events: none !important;
       }
 
@@ -119,7 +158,7 @@
       }
 
       &.form-is-invalid {
-        box-shadow: none !important;
+        outline-width: 0 !important;
         pointer-events: none !important;
         background-color: var(--bg-color-element-disabled) !important;
         border-color: var(--border-color-disabled) !important;

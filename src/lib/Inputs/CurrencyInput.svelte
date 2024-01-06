@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import { tick, createEventDispatcher } from "svelte";
-  import { createId } from "../fp-utils";
+  import { createId } from "../utils";
   import { Label } from "../Labels";
 
   export let value = 0;

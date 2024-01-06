@@ -3,7 +3,7 @@
   import { fly } from "svelte/transition";
   import Icon from "@iconify/svelte";
   import { getDateObjFromISODate, getISODateFromDateObj, isValidDate } from "./utils";
-  import { createId } from "../fp-utils";
+  import { createId } from "../utils";
 
   export let value = "";
   export let dialogWidth = 0;
