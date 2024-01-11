@@ -404,7 +404,7 @@
       border: 2px solid;
       border-color: var(--border-color-default);
       border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow-depth);
+      box-shadow: var(--box-shadow-25);
       background-color: var(--white);
       z-index: 100;
 

@@ -576,7 +576,7 @@
         padding: 0;
         background-color: var(--white);
         z-index: 100;
-        box-shadow: var(--box-shadow-depth);
+        box-shadow: var(--box-shadow-25);
 
         /* &:focus {
           outline: 2px solid var(--secondary-color);

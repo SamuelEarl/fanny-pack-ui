@@ -332,7 +332,7 @@
     &.popup {
       border: 2px solid;
       border-color: var(--border-color-default);
-      box-shadow: var(--box-shadow-depth);
+      box-shadow: var(--box-shadow-25);
     }
 
     & .top {

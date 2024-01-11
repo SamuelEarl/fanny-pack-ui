@@ -157,7 +157,7 @@ If part of the calculator is hidden when it appears in the UI, the screen will s
       position: absolute;
       top: 5px;
       border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow-depth);
+      box-shadow: var(--box-shadow-25);
     }
   }
 }
@@ -251,7 +251,7 @@ It might not be obvious which calculator buttons correspond to which keyboard ke
           position: absolute;
           top: 5px;
           border-radius: var(--border-radius);
-          box-shadow: var(--box-shadow-depth);
+          box-shadow: var(--box-shadow-25);
         }
       }
     }
