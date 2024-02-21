@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
 // ==========================================
-// Fanny Pack UI is a starter kit for UI components along with theme elements. Instead of npm installing this package into your project this npx script will copy the necessary files from the Fanny Pack repo to your project. You can use this starter and customize things as much as you want. No need to worry about submitting pull requests to get something updated the way you need. Since the code is copied to your project, like any other local components, you have full access to the code. So you can make any changes or improvements whenever you want. What if this project gets abandoned and is no longer maintained? That doesn't matter because all the code is in your own repo and you are the maintainer of it from the beginning. The code is well-documented and there are docs for implementing the code, which you can update yourself, so it should be easy enough to customize these components and make them your own.
+// Fanny Pack UI is a theme starter kit. It contains the following:
+// * Pre-built UI components that can be customized to your heart's content.
+// * An `assets` folder with subfolders for `fonts`, `images`, and `styles` (for CSS).
+// * A `docs` folder to document your customizations. 
+// Instead of npm installing this package into your project, this `npx` script will copy the necessary files from the Fanny Pack repo to your project. You can use this theme starter and customize things as much as you want. No need to worry about submitting pull requests to get something updated the way you need. Since the code is copied to your project, you have full access to the code&mdash;like any other local components. So you can make any changes or improvements whenever you want. What if this project gets abandoned and is no longer maintained? That doesn't matter because all the code is in your own repo and you are the maintainer of it from the beginning. The code is well-documented and the `docs` folder details how to implement the code. It should be easy enough to customize these components and make them your own.
 // ==========================================
 // HOW TO USE THIS CLI
 // ------------------------------------------
-// IMPORTANT: Create a new branch before you copy this starter kit to your project.
+// IMPORTANT: Create a new branch before you copy this theme starter kit to your project.
 
 // Navigate to your project's root directory, execute the npx command, and pass the filepaths to each option:
 
