@@ -5,7 +5,7 @@
 // * Pre-built UI components that can be customized to your heart's content.
 // * An `assets` folder with subfolders for `fonts`, `images`, and `styles` (for CSS).
 // * A `docs` folder to document your customizations. 
-// Instead of npm installing this package into your project, this `npx` script will copy the necessary files from the Fanny Pack repo to your project. You can use this theme starter and customize things as much as you want. No need to worry about submitting pull requests to get something updated the way you need. Since the code is copied to your project, you have full access to the code&mdash;like any other local components. So you can make any changes or improvements whenever you want. What if this project gets abandoned and is no longer maintained? That doesn't matter because all the code is in your own repo and you are the maintainer of it from the beginning. The code is well-documented and the `docs` folder details how to implement the code. It should be easy enough to customize these components and make them your own.
+// Instead of npm installing this package into your project, this `npx` script will copy the necessary files from the Fanny Pack UI repo to your project. You can use this theme starter and customize things as much as you want. No need to worry about submitting pull requests to get something updated the way you need. Since the code is copied to your project, you have full access to the code&mdash;like any other local components. So you can make any changes or improvements whenever you want. What if this project gets abandoned and is no longer maintained? That doesn't matter because all the code is in your own repo and you are the maintainer of it from the beginning. The code is well-documented and the `docs` folder details how to implement the code. It should be easy enough to customize these components and make them your own.
 // ==========================================
 // HOW TO USE THIS CLI
 // ------------------------------------------
@@ -26,6 +26,7 @@
 // * Explain that if this command isn't working, then you might need to run `npx clear-npx-cache`. See https://stackoverflow.com/a/75815920/9453009. This should probably be included in the "Get Started" page under a "Troubleshooting" section.
 //     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
 // * Update the "Get Started" docs in this repo once I get everything working properly.
+// * Update the "Overview" page in this repo, where necessary, once I have finished changing this from a traditional npm package to a theme starter kit.
 
 
 import path from "path";
