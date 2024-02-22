@@ -26,7 +26,7 @@ const config = {
           // See https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-media
           postcssGlobalData({
             files: [
-              "src/lib/styles/media-queries.css",
+              "src/assets/styles/media-queries.css",
             ],
           }),
 					// * Configure nesting rules through the postcssPresetEnv plugin:

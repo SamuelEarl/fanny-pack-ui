@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, Checkbox } from "/src/lib";
+  import { Select, Checkbox } from "/src/components";
 
   const jobOptionsStrings = [
     "UI/UX Designer",

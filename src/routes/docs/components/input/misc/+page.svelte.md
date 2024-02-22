@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Input } from "/src/lib";
+  import { Input } from "/src/components";
 
   let textValue = "Change this text";
   let numberValue = 1;

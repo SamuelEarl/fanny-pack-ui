@@ -1,19 +1,5 @@
-/* NOTE: This file imports the `utility-classes.css` file from "/src/lib/styles/utility-classes.css" so if any of the variables in the "/src/lib/styles/utility-classes.css" are changed, then they will be automatically updated in the example app. */
+/* The utility classes in this file are organized the same as Tailwind organizes their utility classes. */
+/* See https://tailwindcss.com/docs/installation */
 
-@import "/src/lib/styles/utility-classes.css";
-
-
-/* Layout */
-@media (min-width: 0px) {
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+@import "utility-classes/layout.css";
+@import "utility-classes/transitions-animations.css";

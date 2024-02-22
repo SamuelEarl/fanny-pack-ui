@@ -3,8 +3,8 @@
   import { writable } from "svelte/store";
   import { browser } from "$app/environment";
   // import Colorpicker from "@budibase/colorpicker";
-  import { Button, Checkbox, Input, Modal, Select, TabsContainer, TabBar, Tab, TabPanel, ToastContent } from "/src/lib";
-  import themeFile from "/src/lib/styles/theme.css";
+  import { Button, Checkbox, Input, Modal, Select, TabsContainer, TabBar, Tab, TabPanel, ToastContent } from "/src/components";
+  import themeFile from "/src/assets/styles/theme.css";
 
   const neutralColors = [
     { label: "--neutral-50", value: "#f9f8f9" },

@@ -10,7 +10,7 @@ Other helpful guides for building component libraries:
 ---
 
 # How to develop new components or edit existing components
-1. I should create the component first inside the `/src/lib` directory (which is where a component library would need to be created).
+1. I should create the component first inside the `/src/components` directory (which is where a component library would need to be created).
 2. Then test that component out on a page in the `/src/routes` directory to make sure that the component works properly in a regular SvelteKit app.
 3. Write comprehensive tests for the component.
 4. Then, for documentation purposes and to give other developers the ability to try out different variations of each component, I will create interactive documentation with controls (similar to what Storybook does) for each component in the `/src/routes` directory. These docs will be similar to the docs found in Carbon Components Svelte (https://carbon-components-svelte.onrender.com/) and maybe Semantic UI.

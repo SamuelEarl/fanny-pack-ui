@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from "$app/navigation";
   import Icon from "@iconify/svelte";
-  import { Button } from "/src/lib";
+  import { Button } from "/src/components";
   import MainNav from "./MainNav.svelte";
 
   let showMainNav = false;

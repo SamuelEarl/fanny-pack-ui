@@ -1,6 +1,6 @@
 <script lang="ts">
   import { afterNavigate } from "$app/navigation";
-  import { Toast } from "/src/lib";
+  import { Toast } from "/src/components";
   import MobileHeader from "./MobileHeader.svelte";
   import Sidebar from "./Sidebar.svelte";
   import "/src/assets/styles/main.css";

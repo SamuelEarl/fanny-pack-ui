@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { RadioButton } from "/src/lib";
+  import { RadioButton } from "/src/components";
 
   let flavors = ["Chocolate", "Caramel", "Oreo", "Peanut Butter Cup", "Vanilla"];
   let selectedFlavor = "";

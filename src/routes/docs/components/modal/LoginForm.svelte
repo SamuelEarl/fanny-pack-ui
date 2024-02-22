@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import { Button, Input } from "/src/lib";
+  import { Button, Input } from "/src/components";
 
   let dispatch = createEventDispatcher();
   let email = "";

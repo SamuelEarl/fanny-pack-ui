@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DatePicker, getISODate, TabsContainer, TabBar, Tab, TabPanel } from "/src/lib";
+  import { DatePicker, getISODate, TabsContainer, TabBar, Tab, TabPanel } from "/src/components";
 
   let date = getISODate(new Date());
   let dateIsValid = false;

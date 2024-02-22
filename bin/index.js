@@ -61,7 +61,7 @@ const argv = yargs(process.argv.slice(2)).options({
 console.log("CLI Arguments:", argv);
 
 // fs.cp(
-//   "/src/lib", "/src/components", 
+//   "/src/components", "/src/components", 
 //   { recursive: true }, 
 //   (err) => {
 //     if(err) {
@@ -75,13 +75,12 @@ console.log("CWD:", process.cwd());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const componentsSrcFolder = "https://github.com/SamuelEarl/fanny-pack-ui/src/lib";
+const componentsSrcFolder = "https://github.com/SamuelEarl/fanny-pack-ui/src/components";
 console.log("componentsSrcFolder:", componentsSrcFolder);
 // const componentsDestFolder = path.join(__dirname, argv.components);
 const componentsDestFolder = argv.components;
 console.log("componentsDestFolder:", componentsDestFolder);
 
-// TODO: Move the styles folder from /src/lib/ to /src/assets/. Right now the /src/assets/styles/ folder just references the styles in /src/lib/styles/, which is what gets copied over. 
 // The /src/assets/styles/ folder should include the following folders and files:
 // utility-classes/
 // base.css

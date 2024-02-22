@@ -5,7 +5,7 @@
 
 
 <script lang="ts">
-  import { FlexGrid, FlexRow, FlexCol, TabsContainer, TabBar, Tab, TabPanel } from "/src/lib";
+  import { FlexGrid, FlexRow, FlexCol, TabsContainer, TabBar, Tab, TabPanel } from "/src/components";
 </script>
 
 

@@ -3,7 +3,7 @@
   // import Prism from "prismjs";
   // // Svelte code highlighting: https://github.com/pngwn/prism-svelte
   // import "prism-svelte";
-  import { Button, Input, Select, Textarea, Tooltip } from "/src/lib";
+  import { Button, Input, Select, Textarea, Tooltip } from "/src/components";
 
   let creatingAccount = false;
   let savingData = false;

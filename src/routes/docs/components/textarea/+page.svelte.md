@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Textarea } from "/src/lib";
+  import { Textarea } from "/src/components";
 
   let textValue = "Change this text";
   let isDisabled = false;

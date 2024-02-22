@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AccordionGroup, Accordion, TabsContainer, TabBar, Tab, TabPanel } from "/src/lib";
+  import { AccordionGroup, Accordion, TabsContainer, TabBar, Tab, TabPanel } from "/src/components";
 </script>
 
 

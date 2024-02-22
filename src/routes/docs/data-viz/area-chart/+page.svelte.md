@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AreaChart, Area, Axis } from "/src/lib";
+  import { AreaChart, Area, Axis } from "/src/components";
 
   let currentData = { timestamp: new Date(), pv: null };
 

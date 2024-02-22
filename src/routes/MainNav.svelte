@@ -2,7 +2,7 @@
   import { page } from "$app/stores";
   import { fly } from "svelte/transition";
   import Icon from "@iconify/svelte";
-  // import { screenWidth } from "$lib/utils/index.svelte";
+  // import { screenWidth } from "/src/components/utils/index.svelte";
 
   $: currentPath = $page.url.pathname;
 

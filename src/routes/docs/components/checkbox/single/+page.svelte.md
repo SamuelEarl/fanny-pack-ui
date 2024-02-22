@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Checkbox } from "/src/lib";
+  import { Checkbox } from "/src/components";
 
   let haveRead = false;
   let checkboxLabel = "I have read the terms and conditions.";

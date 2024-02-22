@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Checkbox, Modal } from "/src/lib";
+  import { Button, Checkbox, Modal } from "/src/components";
   import LoginForm from "./LoginForm.svelte";
 
   let showModal = false;

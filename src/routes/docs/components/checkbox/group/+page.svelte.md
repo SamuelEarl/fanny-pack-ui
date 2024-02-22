@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Checkbox, CheckboxGroup } from "/src/lib";
+  import { Checkbox, CheckboxGroup } from "/src/components";
 
   const suvOptions = ["oversized wheels", "mud tires", "mud guards", "trail running boards", "roof rack"];
   let selectedSuvOptions = [suvOptions[0]];

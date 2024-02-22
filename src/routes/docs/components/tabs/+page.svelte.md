@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TabsContainer, TabBar, Tab, TabPanel } from "/src/lib";
+  import { TabsContainer, TabBar, Tab, TabPanel } from "/src/components";
 </script>
 
 

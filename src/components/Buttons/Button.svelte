@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { createEventDispatcher } from "svelte";
-  import { delay } from "$lib/utils";
+  import { delay } from "/src/components/utils";
 
   export let type = "button";
   export let bgColor = "var(--btn-default-bg-color)";

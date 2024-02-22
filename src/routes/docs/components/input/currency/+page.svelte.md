@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CurrencyInput } from "/src/lib";
+  import { CurrencyInput } from "/src/components";
 
   let locale = "en-US";
   let currency = "USD";

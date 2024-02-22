@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { onMount, afterUpdate } from "svelte";
 	import { Label } from "../Labels";
-	import { createId } from "$lib/utils";
+	import { createId } from "/src/components/utils";
 
 	export let label = "";
 	export let options;

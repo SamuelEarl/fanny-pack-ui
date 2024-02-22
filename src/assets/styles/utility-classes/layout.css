@@ -6,3 +6,18 @@
   padding: 0 15px;
   margin: 0 auto;
 }
+
+@media (min-width: 0px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* @media (--lg-up) */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

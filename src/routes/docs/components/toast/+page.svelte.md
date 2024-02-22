@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Toast, ToastContent } from "/src/lib";
+  import { Button, Toast, ToastContent } from "/src/components";
 
   function setInfoToast() {
     ToastContent.set({ type: "info", msg: 'The "info" toast type will show a notification to your users that is intended for informational purposes. This toast uses the default "duration" prop and will automatically close after 7 seconds.' });

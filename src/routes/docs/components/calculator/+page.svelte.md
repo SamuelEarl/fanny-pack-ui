@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Calculator, CurrencyInput, Input } from "/src/lib";
+  import { Button, Calculator, CurrencyInput, Input } from "/src/components";
   import Icon from "@iconify/svelte";
 
   let amount = 0;
