@@ -9,7 +9,7 @@
 // ==========================================
 // HOW TO USE THIS CLI
 // ------------------------------------------
-// IMPORTANT: Create a new branch before you copy this theme starter kit to your project.
+// IMPORTANT: Use Git to create a new branch before you copy this theme starter kit to your project.
 
 // Navigate to your project's root directory, execute the npx command, and pass the filepaths to each option:
 
@@ -27,6 +27,7 @@
 //     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
 // * Update the "Get Started" docs in this repo once I get everything working properly.
 // * Update the "Overview" page in this repo, where necessary, once I have finished changing this from a traditional npm package to a theme starter kit.
+// * I might look into using svelte-add (https://github.com/svelte-add/svelte-add), but I might stay away from it because it would add more dependencies to this project that may or may not work properly. 
 
 
 import path from "path";
@@ -41,7 +42,7 @@ import yargs from "yargs";
 // (1) The path to a folder where the components should be stored. Defaults to "src/components".
 // (2) The path to a folder where the assets files should be stored. Defaults to "src/assets".
 // (3) The path to a folder where the docs will be located. Defaults to "src/routes/docs".
-// TODO: Look at other possible arguments that I want to use based on the Get Started instructions (https://fanny-pack-ui.pages.dev/get-started).
+// TODO: Look at other possible arguments that I want to use based on the Get Started instructions (https://fanny-pack-ui.pages.dev/get-started). UPDATE: I have read through the Get Started page and there are no other arguments that I want to use for this package.
 // * How to npm install packages through this npx script like Iconify and others that are dependencies of Fanny Pack?
 
 // const argv = yargs(process.argv.slice(2)).options({
