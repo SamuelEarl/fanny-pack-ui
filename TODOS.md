@@ -7,8 +7,10 @@ NOTE: Maybe I could look at how to theme the Carbon components rather than creat
 * High Priority:
     * Convert everything to TypeScript.
     * Write tests for every component and the "Customize Theme" page.
+    * Use uuidv4 instead of the `createId()` function in the `src/components/utils.ts` file.
 
-* Low Priority: Look into how to create a dark theme and provide instructions for doing so.
+* Low Priority: 
+    * Look into how to create a dark theme and provide instructions for doing so.
 
 
 * TODOS for the `get-started.svelte.md` page. 

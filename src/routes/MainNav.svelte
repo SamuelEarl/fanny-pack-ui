@@ -35,8 +35,8 @@
       ],
     },
     {
-      sectionHeading: "Components",
-      sectionUrlPrefix: "/docs/components",
+      sectionHeading: "UI Components",
+      sectionUrlPrefix: "/docs/components/ui",
       sectionItems: [
         {
           icon: "carbon:account",
@@ -142,8 +142,8 @@
       ],
     },
     {
-      sectionHeading: "Data Viz",
-      sectionUrlPrefix: "/docs/data-viz",
+      sectionHeading: "Data Viz Components",
+      sectionUrlPrefix: "/docs/components/data-viz",
       sectionItems: [
         {
           icon: "tabler:chart-area-line",

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import fs from "fs";
+  import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
   // import Prism from "prismjs";
   // // Svelte code highlighting: https://github.com/pngwn/prism-svelte
@@ -66,7 +68,42 @@
       showInteractiveButtons = true;
     }, 0);
   }
+
+  let files;
+  $: console.log("FILES:", files);
+  function readFile(file) {
+    try {
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        const content = reader.result;
+        console.log(content);
+      };
+
+      reader.onerror = function () {
+        console.error('Error reading the file');
+      };
+
+      reader.readAsText(file, 'utf-8');
+    }
+    catch(err) {
+      console.error("readFile:", err);
+    }
+  }
+
+  // TODO: 
+  // I want to create something similar to the "Controls" panel that Storybook uses to set props and slots. But I want to auto create those "Control" fields for a component when this page loads. So I need to find a way to read the contents of the <Button> component file. It seems like the only way to read files in the browser is through the File API. (See https://www.geeksforgeeks.org/how-to-read-a-local-text-file-using-javascript/ for an example.)
+  // I am trying to figure out if there is a way to programmatically set the value of the `file` variable to "/src/components/Button.svelte" when this page loads and then parse the contents of that file into data structures for props and slots. Then I can bind field values to those props and slots for my auto-generated "Controls" panel.
+  // I might need to do this on the server side with the fs module.
+  onMount(() => {
+    // console.log("BUTTON:", );
+    // readFile("/src/components/Button.svelte");
+  });
 </script>
+
+<input bind:files id="many" type="file" />
+
+---
 
 
 # Button

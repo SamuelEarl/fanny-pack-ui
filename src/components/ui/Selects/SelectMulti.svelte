@@ -16,7 +16,7 @@
 
 <script lang="ts">
   import { onMount, tick } from "svelte";
-  import { createId, calculateOptionsListHeight } from "../utils";
+  import { createId, calculateOptionsListHeight } from "/src/components/utils";
   // import isEqual from "lodash.isequal";
   import { Button } from "../Buttons";
   import { CheckboxGroup } from "../Checkboxes";

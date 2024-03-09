@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createId } from "../utils";
+  import { createId } from "/src/components/utils";
   import { Label } from "../Labels";
   
   export let label = "";
