@@ -91,10 +91,11 @@
     }
   }
 
-  // TODO: 
+  // TODO: Continue here:
   // I want to create something similar to the "Controls" panel that Storybook uses to set props and slots. But I want to auto create those "Control" fields for a component when this page loads. So I need to find a way to read the contents of the <Button> component file. It seems like the only way to read files in the browser is through the File API. (See https://www.geeksforgeeks.org/how-to-read-a-local-text-file-using-javascript/ for an example.)
   // I am trying to figure out if there is a way to programmatically set the value of the `file` variable to "/src/components/Button.svelte" when this page loads and then parse the contents of that file into data structures for props and slots. Then I can bind field values to those props and slots for my auto-generated "Controls" panel.
   // I might need to do this on the server side with the fs module.
+  // Is there a way that I can show a code preview of the component along with the props and slots that are selected? Could I let the user edit that code preview and the "Control" fields would update? Could I edit the "Control" fields and the code preview would update?
   onMount(() => {
     // console.log("BUTTON:", );
     // readFile("/src/components/Button.svelte");
