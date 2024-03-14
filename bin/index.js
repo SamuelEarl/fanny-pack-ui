@@ -33,7 +33,7 @@
 //     * Also, if I make changes to the npx script, then I will also need to run `npx clear-npx-cache` in order for those changes to work.
 // * Update the "Get Started" docs in this repo once I get everything working properly.
 // * Update the "Overview" page in this repo, where necessary, once I have finished changing this from a traditional npm package to a theme starter kit.
-//     * I need to include an explanation of the dependencies that need to be installed for Fanny Pack to work properly.
+//     * I need to include an explanation of the dependencies that need to be installed for Fanny Pack to work properly: d3, Iconify, tippy.js, and probably some others. When I test this in a new app, then I will know which packages need to be installed.
 // * I might look into using svelte-add (https://github.com/svelte-add/svelte-add), but I might stay away from it because it would add more dependencies to this project that may or may not work properly. 
 // * I should borrow component and organization ideas from daisyUI. I want to organize the colors, components, and everything else in an intuitive and maintainable way. I can look at daisyUI for ideas on how to do all of that. 
 //     * NOTE: I still want to create my own theme starter kit (instead of using daisyUI) because daisyUI is based on Tailwind and I have already documented my experiences with Tailwind. I like the organizational ideas, but I don't like being locked into a utility class framework. I prefer using my own component library along with CSS variables and a few of my own utility classes.
