@@ -1,3 +1,25 @@
+<!--
+  TODO: I should borrow accessibility features from these pages:
+  * http://ncamftp.wgbh.org/sp/tests/dialog/modalDialog.html
+  * https://github.com/gdkraus/accessible-modal-dialog
+
+  Specifically, the aria-lablledby and aria-describedby attributes should be used, which will cause screen readers to read the modal when it pops up on the screen. Note that if there are interactive elements in the modal (e.g. buttons, inputs), then those will not be read by the screen reader unless one of them receives focus when the modal pops up. To handle that situation, you can create a <span class="sr-only">Insert instructions that describe the modal and how to interact with it</span> element that is hidden visually but that screen readers will read. For example:
+
+  .sr-only {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    top: auto;
+    overflow: hidden;
+  }
+
+  <p id="modal-instructions">
+    You have two minutes before automatic logout. Would you like to extend your session?
+    <span class="sr-only">Press the Tab key to select either the Extend Session button, or the Do Not Extend button, or the Close button.</span>
+  <p>
+-->
+
 <script lang="ts">
   import { onMount, createEventDispatcher } from "svelte";
   import { Button } from "../Buttons";
